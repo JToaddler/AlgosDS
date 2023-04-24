@@ -1,0 +1,41 @@
+package com.algos.simple;
+
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+public class InsertionSort {
+
+	public static void main(String[] args) {
+
+		int max = 5;
+		Long[] array = new Long[max];
+		IntStream.range(0, max).forEach(index -> {
+			array[index] = Math.round(Math.random() * 1000);
+		});
+		System.out.println(Arrays.asList(array));
+		// Arrays.sort(array);
+		sort(array);
+		System.out.println(Arrays.asList(array));
+	}
+
+	static void sort(Long arr[]) {
+		for (int i = 1; i < arr.length; i++) {
+			long a = arr[i - 1];
+			long b = arr[i];
+			if (a > b) {
+				arr[i] = a;
+				arr[i - 1] = b;
+			}
+			int m = i;
+			while (m > 0) {
+				long c = arr[m - 1];
+				long d = arr[m];
+				if (c > d) {
+					arr[m - 1] = d;
+					arr[m] = c;
+				}
+				m--;
+			}
+		}
+	}
+}
