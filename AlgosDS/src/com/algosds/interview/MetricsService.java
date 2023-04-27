@@ -6,6 +6,18 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * 
+ * more optimized approach of the same problem is here :
+ * https://gist.github.com/kardolus/da8b2174920eca3efc79
+ * 
+ * 2nd version :
+ * https://github.com/deepak-malik/Data-Structures-In-Java/blob/master/src/com/deepak/data/structures/Set/ArrayBasedSet.java
+ * 
+ * 
+ * @author Anto
+ *
+ */
 public class MetricsService implements Set<Metrics> {
 
 	private Metrics[] metrics;
@@ -35,6 +47,18 @@ public class MetricsService implements Set<Metrics> {
 				return m1.getId() - m2.getId();
 			}
 		});
+		
+		/*
+		 * same with lambda experssion
+		 * int index = Arrays.binarySearch(ms, metrics, (Metrics m1, Metrics m2) {
+				return m1.getId() - m2.getId();
+			});
+		 * 
+		 * 
+		 * 
+		 */
+		
+		
 		return index;
 	}
 

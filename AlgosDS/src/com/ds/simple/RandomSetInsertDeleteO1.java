@@ -64,7 +64,6 @@ public class RandomSetInsertDeleteO1 {
 		list.remove(list.size() - 1);
 		map.remove(value);
 		return true;
-
 	}
 
 	public int getRandom() {
