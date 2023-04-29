@@ -26,9 +26,24 @@ public class Metrics {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Metrics [id=" + id + "]";
+	public Metrics(int id) {
+		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return id + " ";
+	}
+
+	public boolean equals(Metrics m) {
+		if (m != null && this.id == m.id) {
+			return true;
+		} else
+			return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return this.id;
+	}
 }

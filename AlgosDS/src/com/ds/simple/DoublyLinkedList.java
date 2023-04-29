@@ -12,7 +12,7 @@ public class DoublyLinkedList {
 		private Node previous;
 		private Node next;
 
-		public Node(int data) {
+		public Node(int data) { 
 			this.data = data;
 		}
 	}
@@ -41,7 +41,7 @@ public class DoublyLinkedList {
 	 * @param value
 	 */
 	public void addLast(int value) {
-
+ 
 		Node newNode = new Node(value);
 		if (head == null) { // no items in the Dllinked
 			head = newNode;
@@ -50,7 +50,7 @@ public class DoublyLinkedList {
 			tail.next = newNode;
 			newNode.previous = tail;
 			tail = newNode;
-			newNode.next = null;
+			newNode.next = null; 
 		}
 		++size;
 	}

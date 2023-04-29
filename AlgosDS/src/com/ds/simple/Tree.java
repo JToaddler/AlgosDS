@@ -41,7 +41,7 @@ public class Tree {
 				System.out.println("Value " + value + "  added to the Right of " + node.root);
 			} else { // recursive call- left node already present
 				insert(node.right, value);
-			}
+			} 
 		}
 		if (node.root == value) {
 			System.out.println("Value already exist :" + value);

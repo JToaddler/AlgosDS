@@ -1,4 +1,6 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class Main {
 
@@ -15,10 +17,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		LinkedList<Integer> list = new LinkedList<Integer>();
-		list.add(0, 1);
-		list.add(list.size() - 1, 2);
-		System.out.println(list);
+		List<String> strList = new ArrayList();
+		System.out.println(strList.indexOf(strList));
+
 	}
 
 }

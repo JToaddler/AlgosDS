@@ -68,8 +68,6 @@ public class Stack {
 			System.out.print(array[i] + ", ");
 		}
 	}
-	
-	
 
 	@Override
 	public String toString() {

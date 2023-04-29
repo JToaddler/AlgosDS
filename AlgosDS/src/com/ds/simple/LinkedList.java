@@ -62,8 +62,8 @@ public class LinkedList {
 			System.out.println("Inserted " + last.next.data + " After " + last.data);
 		}
 		size = size + 1;
-	}
-
+	}  
+ 
 	public void insert(int index, int val) {
 
 		if (index < 0 || index > size) {
@@ -93,12 +93,10 @@ public class LinkedList {
 			head = current;
 			size = size - 1;
 			return true;
-
 		}
 	}
 
 	public boolean deleteAt(int index) {
-
 		if (head == null || index < 0 || index > size) {
 			return false;
 		}
@@ -115,7 +113,6 @@ public class LinkedList {
 			size = size - 1;
 		}
 		return true;
-
 	}
 
 	public boolean deleteLast() {
@@ -151,7 +148,7 @@ public class LinkedList {
 		System.out.println();
 	}
 
-	public void reverseLinkedList() {
+	public void reverseLinkedList() {  
 		System.out.println(" === Before reversal ==== ");
 		printLinkedList();
 		Node current = head;
@@ -163,8 +160,8 @@ public class LinkedList {
 			previous = current;
 			current = next;
 		}
-		head = previous;
-		printLinkedList();
+		head = previous; 
+		printLinkedList(); 
 	}
 
 	public static void main(String[] args) {

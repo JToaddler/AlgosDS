@@ -1,0 +1,54 @@
+package com.algosds.string;
+
+import java.util.Arrays;
+
+/**
+ * 
+ * https://leetcode.com/problems/reorder-data-in-log-files/description/
+ * <p>
+ * <code>
+ * Time complexity : O(N * log n) [Arrays.sort uses quick sort]
+ * Space complexity : O(N) 
+ * 
+ * when log1 < log2 => -1  [a < b ]
+ * when log1 == log2 => 0  [a == a]
+ * when log1 > log2 => 1   [b > a ]
+ * </code
+ * </p>
+ * @author Anto
+ *
+ */
+public class ReOrderLog {
+
+	public static void main(String[] logs) {
+
+	}
+
+	public static String[] orderlogs(String[] logs) {
+
+		Arrays.sort(logs, (log1, log2) -> {
+
+			int index1 = log1.indexOf(" ");
+			String id1 = log1.substring(0, index1);
+			String line1 = log1.substring(index1 + 1);
+
+			int index2 = log2.indexOf(" ");
+			String id2 = log2.substring(0, index2);
+			String line2 = log2.substring(index2 + 1);
+
+			boolean isDigit1 = Character.isDigit(line1.charAt(0));
+			boolean isDigit2 = Character.isDigit(line2.charAt(0));
+
+			if (!isDigit1 && !isDigit2) { // if both are letter logs,sort by logs, not ids.
+
+				int val = line1.compareTo(line2);
+				if (val == 0) // if both logs are same, sort using the id.
+					return id1.compareTo(id2);
+				else
+					return val;
+			}
+			return isDigit1 ? (isDigit2 ? 0 : 1) : -1;
+		});
+		return logs;
+	}
+}
