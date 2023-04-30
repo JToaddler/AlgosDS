@@ -1,5 +1,5 @@
 
-package com.ds.simple;
+package com.ds;
 
 public class BinaryTreeMaxDepth {
 

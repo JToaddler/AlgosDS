@@ -1,25 +1,37 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 public class Main {
 
 	private String val;
+	private int[] intArray = new int[4];
 
-	public Main(String id) {
-		this.val = id;
-	}
+	Node front;
+	Node rear;
+	int size;
 
-	@Override
-	public String toString() {
-		return "Main [val=" + val + "] ";
+	class Node {
+		Object val;
+		Node next;
+
+		public Node(int data, Node next) {
+			this.val = data;
+			this.next = next;
+		}
+
 	}
 
 	public static void main(String[] args) {
 
-		List<String> strList = new ArrayList();
-		System.out.println(strList.indexOf(strList));
+		Main m = new Main();
+		Node newNode = m.new Node(1, null);
 
+		m.front = newNode;
+		m.rear = newNode;
+
+		m.rear.next = m.new Node(2, null);
+		System.out.println(m.front.next.val);
+
+		for (int i = 0; i < m.intArray.length; i++) {
+			System.out.print(m.intArray[i]);
+		}
 	}
 
 }

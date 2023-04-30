@@ -1,6 +1,6 @@
-package com.ds.simple;
+package com.ds;
 
-import com.ds.simple.Tree.TreeNode;
+import com.ds.Tree.TreeNode;
 
 /**
  * https://leetcode.com/problems/binary-tree-maximum-path-sum/

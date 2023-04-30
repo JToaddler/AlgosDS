@@ -52,7 +52,7 @@ public class MetricsService implements Set<Metrics> {
 
 	@Override
 	public Iterator<Metrics> iterator() {
-		return Arrays.asList(this.metrics).iterator();
+		return Arrays.asList(Arrays.copyOfRange(this.metrics, 0, this.size)).iterator();
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.ds.simple;
+package com.ds;
 
 import java.util.ArrayList;
 import java.util.HashMap;
