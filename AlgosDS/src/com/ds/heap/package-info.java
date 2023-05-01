@@ -7,4 +7,4 @@
  * 
  * 
  */
-package com.ds.head;
+package com.ds.heap;
