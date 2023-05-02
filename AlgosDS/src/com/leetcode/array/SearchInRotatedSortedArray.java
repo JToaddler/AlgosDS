@@ -30,7 +30,6 @@ public class SearchInRotatedSortedArray {
 					l = mid + 1;
 				}
 			} else { // right half is sorted array
-
 				if (target >= nums[mid] && target <= nums[r]) {
 					l = mid + 1;
 				} else {
