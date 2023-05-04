@@ -9,8 +9,8 @@ public class DuplicateStringCount {
 
 		String str = "ABBCCCDDDD";
 
-		System.out.println(Arrays.asList(str.split("")).stream()
-				.collect(Collectors.groupingBy(String::toString, Collectors.counting())));
+		System.out.println(
+				Arrays.stream(str.split("")).collect(Collectors.groupingBy(String::toString, Collectors.counting())));
 
 	}
 

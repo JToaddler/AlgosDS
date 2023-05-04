@@ -3,6 +3,25 @@ package com.algos.simple;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+/**
+ * 
+ * 
+ * The worst case time complexity of Insertion sort is O(N^2) The average case
+ * time complexity of Insertion sort is O(N^2) The time complexity of the best
+ * case is O(N).
+ * 
+ * 
+ * 
+ * The auxiliary space complexity of Insertion Sort’s Recursive Approach is O(n)
+ * due to the recursion stack.
+ * 
+ * 
+ * 
+ * 
+ * 
+ * @author Anto
+ *
+ */
 public class InsertionSort {
 
 	public static void main(String[] args) {

@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Main {
 
 	private String val;
@@ -19,19 +24,21 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		Set<List<Integer>> setInts = new HashSet<List<Integer>>();
+		List<Integer> intList = new ArrayList<Integer>();
+		intList.add(1);
+		intList.add(2);
+		System.out.println(setInts.add(intList));
 
-		Main m = new Main();
-		Node newNode = m.new Node(1, null);
+		intList = new ArrayList<Integer>();
+		intList.add(2);
+		intList.add(1);
+		System.out.println(setInts.add(intList));
 
-		m.front = newNode;
-		m.rear = newNode;
-
-		m.rear.next = m.new Node(2, null);
-		System.out.println(m.front.next.val);
-
-		for (int i = 0; i < m.intArray.length; i++) {
-			System.out.print(m.intArray[i]);
-		}
+		intList = new ArrayList<Integer>();
+		intList.add(1);
+		intList.add(1);
+		System.out.println(setInts.add(intList));
 	}
 
 }
