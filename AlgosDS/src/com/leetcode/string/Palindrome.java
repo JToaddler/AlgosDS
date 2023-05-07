@@ -1,16 +1,14 @@
-package com.algosds.string;
+package com.leetcode.string;
 
 public class Palindrome {
 
 	public static void main(String[] args) {
-
-		String str = "Anna";
+		String str = "annaa";
 		StringBuilder sb = new StringBuilder("");
+
 		for (int i = str.length() - 1; i >= 0; i--) {
 			sb.append(str.charAt(i));
 		}
-		System.out.println(sb.toString());
-		System.out.println(str.toLowerCase().equals(sb.toString().toLowerCase()) ? true : false);
+		System.out.println(sb.toString().equals(str));
 	}
-
 }

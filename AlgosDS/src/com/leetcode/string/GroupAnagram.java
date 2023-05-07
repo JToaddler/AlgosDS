@@ -1,4 +1,4 @@
-package com.algosds.string;
+package com.leetcode.string;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,59 +36,39 @@ import java.util.Map;
  */
 public class GroupAnagram {
 
-	public List<List<String>> groupAnagrams(String[] strs) {
+	public List<List<String>> groupAnagrams(String[] words) {
 
 		List<List<String>> result = new ArrayList<List<String>>();
-		Map<String, List<String>> groupAnagram = new HashMap<String, List<String>>();
 
-		if (strs == null || strs.length == 0) {
-			return result;
+		Map<String, List<String>> keyResult = new HashMap<String, List<String>>();
+
+		for (String word : words) {
+			String signature = getSignature(word);
+			keyResult.putIfAbsent(signature, new ArrayList<String>());
+			keyResult.get(signature).add(word);
 		}
-		if (strs.length == 1) {
-			List<String> group = new ArrayList<String>();
-			result.add(group);
-			return result;
-		}
-		for (String str : strs) {
-			String code = getCode(str);
-			groupAnagram.putIfAbsent(code, new ArrayList<String>());
-			groupAnagram.get(code).add(str);
-		}
-		System.out.println(groupAnagram);
-		return new ArrayList<List<String>>(groupAnagram.values());
+		result.addAll(keyResult.values());
+		return result;
 	}
 
-	public String getCode(String string) {
-
-		int[] letters = new int[26];
+	public String getSignature(String word) {
+		int[] letter = new int[26];
 		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < string.length(); i++) {
-			letters[string.charAt(i) - 'a']++;
+		for (int i = 0; i < word.length(); i++) {
+			letter[word.charAt(i) - 'a'] = letter[word.charAt(i) - 'a'] + 1;
 		}
-		for (int i = 0; i < letters.length; i++) {
-			if (letters[i] != 0) {
-				sb.append((char) (i + 'a')).append(letters[i]);
+		for (int i = 0; i < letter.length; i++) {
+			if (letter[i] != 0) {
+				sb.append((char) i + 'a').append(letter[i]);
 			}
 		}
-		System.out.println(sb);
 		return sb.toString();
 	}
 
 	public static void main(String[] args) {
-
 		String[] groups = new String[] { "eat", "tea", "tan", "ate", "nat", "bat" };
-
-		new GroupAnagram().groupAnagrams(groups);
-
-	}
-
-	public void print(int[] letters) {
-		StringBuilder sb = new StringBuilder("[");
-		for (int i = 0; i < letters.length; i++) {
-			sb.append(letters[i] + ", ");
-		}
-		System.out.println(sb.toString());
+		GroupAnagram ga = new GroupAnagram();
+		System.out.println(ga.groupAnagrams(groups));
 	}
 
 }

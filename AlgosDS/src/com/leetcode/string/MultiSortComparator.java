@@ -1,4 +1,4 @@
-package com.algosds.string;
+package com.leetcode.string;
 
 import java.util.ArrayList;
 import java.util.Arrays;
