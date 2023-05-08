@@ -20,10 +20,10 @@ public class EncodeDecode {
 		int endIndex = 0;
 		while (endIndex < words.length()) {
 			int index = words.indexOf("/", endIndex);
-			int wordLength = Integer.parseInt(words.substring(endIndex, index));
-			endIndex = index + wordLength + 1;
-			list.add(words.substring(index + 1, endIndex));
-
+			int length = Integer.parseInt(words.substring(endIndex, index));
+			endIndex = index + length + 1;
+			String word = words.substring(index + 1, endIndex);
+			list.add(word);
 		}
 		return list;
 	}
