@@ -21,6 +21,7 @@ import java.util.Set;
  * 
  * https://www.youtube.com/watch?v=4i6-9IzQHwo
  * 
+ * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  * 
  * @author Anto
  *
@@ -30,6 +31,7 @@ public class SlidingWindowMaxSubstring {
 	public static int lengthOfLongestSubString(String str) {
 		if (str == null || str.length() == 0)
 			return 0;
+
 		int i = 0, j = 0, max = 0;
 
 		Set<Character> set = new HashSet<Character>();
