@@ -39,6 +39,10 @@ public class Main {
 		intList.add(1);
 		intList.add(1);
 		System.out.println(setInts.add(intList));
+
+		System.out.println("test" == "test");
+		System.out.println(new String("test") == new String("test"));
+
 	}
 
 }
