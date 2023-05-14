@@ -12,13 +12,13 @@ public class DoublyLinkedList {
 		private Node previous;
 		private Node next;
 
-		public Node(int data) { 
+		public Node(int data) {
 			this.data = data;
 		}
 	}
 
 	/**
-	 *  O(1) 
+	 * O(1)
 	 */
 	public void addFirst(int value) {
 
@@ -37,11 +37,12 @@ public class DoublyLinkedList {
 	}
 
 	/**
-	 *  O(1) 
+	 * O(1)
+	 * 
 	 * @param value
 	 */
 	public void addLast(int value) {
- 
+
 		Node newNode = new Node(value);
 		if (head == null) { // no items in the Dllinked
 			head = newNode;
@@ -50,7 +51,7 @@ public class DoublyLinkedList {
 			tail.next = newNode;
 			newNode.previous = tail;
 			tail = newNode;
-			newNode.next = null; 
+			newNode.next = null;
 		}
 		++size;
 	}
@@ -82,7 +83,8 @@ public class DoublyLinkedList {
 	}
 
 	/**
-	 *  O(i)  - i - Index . On the average its O(n)
+	 * O(i) - i - Index . On the average its O(n)
+	 * 
 	 * @param val
 	 * @param index
 	 */
@@ -191,6 +193,29 @@ public class DoublyLinkedList {
 			}
 		}
 		System.out.println();
+	}
+
+	void reverse() {
+		Node temp = null;
+		Node current = head;
+
+		/*
+		 * swap next and prev for all nodes of doubly linked list
+		 */
+		while (current != null) {
+			temp = current.previous;
+			current.previous = current.next;
+			current.next = temp;
+			current = current.previous;
+		}
+
+		/*
+		 * Before changing head, check for the cases like empty list and list with only
+		 * one node
+		 */
+		if (temp != null) {
+			head = temp.previous;
+		}
 	}
 
 	public static void main(String[] args) {

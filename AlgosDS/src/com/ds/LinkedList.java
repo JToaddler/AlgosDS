@@ -40,7 +40,7 @@ public class LinkedList {
 			head = newNode;
 		} else {
 			Node current = head;
-			while (current != null) {
+			while (current.next != null) {
 				current = current.next;
 			}
 			current.next = newNode;
@@ -148,7 +148,7 @@ public class LinkedList {
 		System.out.println();
 	}
 
-	public void reverseLinkedList() {  
+	public void reverseLinkedList() {
 		System.out.println(" === Before reversal ==== ");
 		printLinkedList();
 		Node current = head;
