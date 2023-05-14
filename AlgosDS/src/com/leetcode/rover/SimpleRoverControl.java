@@ -1,4 +1,4 @@
-package com.leetcode.array;
+package com.leetcode.rover;
 
 import java.util.Arrays;
 
@@ -6,11 +6,11 @@ public class SimpleRoverControl {
 
 	public static void main(String[] args) {
 
-		int count = 4;
+		int count = 5;
 		String[] commands = { "RIGHT", "DOWN", "LEFT", "LEFT", "DOWN" };
 		int[][] array = generateArray(count);
 		moveRover(commands, array, count);
-
+		
 	}
 
 	private static int moveRover(String[] commands, int[][] array, int count) {
