@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+
 /**
+ * 
+ * https://leetcode.com/problems/insert-delete-getrandom-o1/
+ * 
  * https://www.youtube.com/watch?v=TD2g8UjXMLA&list=PLn1T1egVXVBDthyLvIRb7MiC36Az4Iejl
  * 
  * all functions O(1)
@@ -29,7 +33,6 @@ import java.util.Random;
  * linear where N is the number of entries we have in our map and list.
  *
  */
-
 public class RandomSetInsertDeleteO1 {
 
 	private Map<Integer, Integer> map;
