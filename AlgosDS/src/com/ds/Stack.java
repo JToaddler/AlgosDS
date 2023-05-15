@@ -47,6 +47,7 @@ public class Stack {
 			throw new ArrayIndexOutOfBoundsException();
 		}
 		int i = array[top];
+		array[top] = 0;
 		--top;
 		return i;
 	}
