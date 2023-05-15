@@ -19,6 +19,7 @@ public class BinarySearch {
 			return -1;
 		}
 		Arrays.sort(nums);
+		System.out.println(Arrays.toString(nums));
 		int l = 0;
 		int r = nums.length - 1;
 		while (l <= r) {

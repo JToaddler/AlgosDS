@@ -1,6 +1,8 @@
 package com.algosds.interview;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class DuplicateStringCount {
@@ -11,6 +13,9 @@ public class DuplicateStringCount {
 
 		System.out.println(
 				Arrays.stream(str.split("")).collect(Collectors.groupingBy(String::toString, Collectors.counting())));
+
+		Map<String, Long> treeMap = Arrays.stream(str.split(""))
+				.collect(Collectors.groupingBy(String::toString, Collectors.counting()));
 
 	}
 
