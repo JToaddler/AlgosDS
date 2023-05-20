@@ -4,8 +4,6 @@ public class MergeSortedLinkedList {
 
 	public static void main(String[] args) {
 		
-		
-		
 	}
 
 }
@@ -26,4 +24,21 @@ class ListNode {
 		this.val = val;
 		this.next = next;
 	}
+
+	public void insert(int val) {
+
+		if (next == null) {
+			next = new ListNode(val);
+		} else {
+			ListNode current = next;
+			while (current != null) {
+
+				current = current.next;
+
+			}
+
+		}
+
+	}
+
 }
