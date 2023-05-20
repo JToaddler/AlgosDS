@@ -82,7 +82,7 @@ package com.leetcode.rover;
 
 */
 
-class MarsRoverWealthSimple {
+public class WealthSimple {
 
 	public static void main(String[] args) {
 
