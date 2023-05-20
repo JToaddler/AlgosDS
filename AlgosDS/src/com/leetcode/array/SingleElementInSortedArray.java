@@ -1,5 +1,12 @@
 package com.leetcode.array;
 
+/**
+ * 
+ * https://leetcode.com/problems/single-element-in-a-sorted-array/
+ * 
+ * @author Anto
+ *
+ */
 public class SingleElementInSortedArray {
 
 	public static Integer findSingleElment(int[] nums) {
@@ -21,7 +28,7 @@ public class SingleElementInSortedArray {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(findSingleElment(new int[] { 1, 1, 2, 3, 3 }));
+		System.out.println(findSingleElment(new int[] { 1, 1, 3, 3, 5, 5, 7, 8, 8 }));
 	}
 
 }

@@ -13,14 +13,13 @@ public class ThreeSum {
 	 * 
 	 * https://leetcode.com/problems/3sum/solutions/3109452/c-easiest-beginner-friendly-sol-set-two-pointer-approach-o-n-2-logn-time-and-o-n-space/
 	 * 
-	 * 
 	 * Time complexity: O(n^2 log n) - where n is the size of array
 	 * 
 	 * Sorting takes O(n log n) time and loop takes O(n^2) time, So the overall time
 	 * complexity is O(n log n + n^2 log n) - O(n^2 log n)
 	 * 
 	 * 
-	 * Space complexity: O(n) - for taking hashset.
+	 * Space complexity: O(n) - for taking hash-set.
 	 * 
 	 * 
 	 * @param nums
