@@ -10,7 +10,7 @@ import java.util.List;
  * @author Anto
  *
  */
-class RoverMarsMain {
+public class RoverMarsMain {
 
 	public static void main(String[] args) throws Exception {
 
@@ -27,10 +27,4 @@ class RoverMarsMain {
 		}
 	}
 
-}
-
-class Test {
-	public static void main(String[] args) throws Exception {
-
-	}
 }

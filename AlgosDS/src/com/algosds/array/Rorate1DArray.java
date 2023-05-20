@@ -65,6 +65,6 @@ public class Rorate1DArray {
 		// rotateArrayUsingTempArray(intArray, shiftPosition);
 		// rotateArrayByOne(intArray);
 		print(intArray2);
-		rotateArrayByIndex(intArray2, 5);
+		rotateArrayByIndex(intArray2, 3);
 	}
 }

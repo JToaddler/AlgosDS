@@ -1,4 +1,4 @@
-package com.leetcode.matrix;
+package com.algosds.array;
 
 /**
  * 
@@ -12,7 +12,7 @@ public class TransposeArray {
 
 	public static void main(String[] arsg) {
 
-		Integer[][] array = generateGrid(4, 2);
+		Integer[][] array = generateGrid(4, 4);
 		for (int i = 0; i < array.length; i++) {
 			print(array[i]);
 		}
