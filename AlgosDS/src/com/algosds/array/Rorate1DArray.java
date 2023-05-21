@@ -2,12 +2,13 @@ package com.algosds.array;
 
 /**
  * 
- * Time complexity: O(N) Auxiliary Space: O(D) 
+ * Time complexity: O(N) Auxiliary Space: O(D)
  * 
  * 2 ways to solve this problem
  * 
- * a) Temp array & start iteration from index till end of array (index -> length) And (0 to index +1)
- * b) In place rotation. shift 1 -> 0, 2-> 1, 3-> 2......n -> n-1,0 -> n
+ * a) Temp array & start iteration from index till end of array (index ->
+ * length) And (0 to index +1) b) In place rotation. shift 1 -> 0, 2-> 1, 3->
+ * 2......n -> n-1,0 -> n
  * 
  * @author Anto
  *
@@ -60,7 +61,7 @@ public class Rorate1DArray {
 
 		int[] intArray = new int[] { 1, 2, 3, 4, 5, 6, 7 };
 		int[] intArray2 = new int[] { 1, 2, 3, 4, 5, 6, 7 };
-		
+
 		int shiftPosition = 3;
 		// rotateArrayUsingTempArray(intArray, shiftPosition);
 		// rotateArrayByOne(intArray);
