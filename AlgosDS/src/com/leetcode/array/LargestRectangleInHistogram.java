@@ -17,38 +17,35 @@ import java.util.Stack;
 public class LargestRectangleInHistogram {
 
 	public static void main(String[] args) {
-		int[] heights = { 2, 1, 6, 6, 8, 10 };
+		int[] heights = { 2, 1, 5, 6, 2, 3 };
 		findMaxRectangle(heights);
 	}
 
 	public static int findMaxRectangle(int[] heights) {
 
 		int maxArea = 0;
-		Stack<int[]> stack = new Stack<int[]>();
-
 		if (heights.length == 1) {
 			return heights[0];
 		}
-
+		Stack<int[]> stack = new Stack<int[]>();
 		for (int i = 0; i < heights.length; i++) {
 			int[] curr = { i, heights[i] };
 			while (!stack.isEmpty() && stack.peek()[1] > curr[1]) {
 				int[] popped = stack.pop();
-				int width = i - popped[0];
 				int height = popped[1];
-				maxArea = Math.max(maxArea, width * height);
+				int width = i - popped[0];
+				maxArea = Math.max(maxArea, height * width);
 				curr[0] = popped[0];
 			}
 			stack.push(curr);
 		}
 		int len = heights.length;
-
 		while (!stack.isEmpty()) {
 			int[] curr = stack.pop();
-			maxArea = Math.max(maxArea, (len - curr[0]) * curr[1]);
+			maxArea = Math.max(maxArea, ((len - curr[0]) * curr[1]));
 		}
-		System.out.println("Max area " + maxArea);
-		return maxArea;
+		System.out.println(maxArea);
+		return maxArea; // TODO
 	}
 
 }
