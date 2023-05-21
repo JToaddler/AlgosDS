@@ -6,7 +6,6 @@ import java.util.Stack;
  * 
  * https://leetcode.com/problems/largest-rectangle-in-histogram/
  * 
- * 
  * https://www.youtube.com/watch?v=zx5Sw9130L0
  * 
  * 
@@ -22,11 +21,14 @@ public class LargestRectangleInHistogram {
 	}
 
 	public static int findMaxRectangle(int[] heights) {
-
 		int maxArea = 0;
-		if (heights.length == 1) {
+		
+		if (heights == null || heights.length == 0)
+			return maxArea;
+		if (heights.length == 1)
 			return heights[0];
-		}
+		
+
 		Stack<int[]> stack = new Stack<int[]>();
 		for (int i = 0; i < heights.length; i++) {
 			int[] curr = { i, heights[i] };
