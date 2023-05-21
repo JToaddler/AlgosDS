@@ -1,4 +1,4 @@
-package com.algos.simple;
+package com.algos.sort;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;

@@ -1,4 +1,4 @@
-package com.algos.simple;
+package com.algos.sort;
 
 public class HeapSort {
 
