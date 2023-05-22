@@ -4,15 +4,15 @@ public class Fibonacci {
 
 	public static void main(String[] args) {
 		int x = 5;
-		System.out.println("Sum of first " + x + " numbers : " + sumFibonacci(x));
+		System.out.println("Sum of first " + x + " numbers : " + fibonacci(x));
 		printFib(x);
 	}
 
-	public static int sumFibonacci(int x) {
+	public static int fibonacci(int x) {
 		if (x <= 1) {
 			return x;
 		}
-		return sumFibonacci(x - 1) + sumFibonacci(x - 2);
+		return fibonacci(x - 1) + fibonacci(x - 2);
 	}
 
 	public static void printFib(int x) {
