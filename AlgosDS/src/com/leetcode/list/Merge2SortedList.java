@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * https://leetcode.com/problems/merge-two-sorted-lists
+ * 
+ * @author Anto
+ *
+ */
 public class Merge2SortedList {
 
 	public static void main(String[] args) {
