@@ -87,6 +87,19 @@ public class MinHeap {
 		heap[index2] = temp;
 	}
 
+	public void print() {
+		for (int i = 0; i < size / 2; i++) {
+			System.out.print("Parent Node : " + heap[i]);
+
+			if (leftChild(i) < size) {
+				System.out.print("   Left Child : " + heap[leftChild(i)]);
+			}
+			if (rightChild(i) < size) {
+				System.out.println("  Right Child : " + heap[rightChild(i)]);
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 
 		MinHeap minHeap = new MinHeap();
