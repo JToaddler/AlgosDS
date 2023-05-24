@@ -20,7 +20,9 @@ Tree Types
 
 Array Representation of Binary Tree
 
-To convert Tree to array representation, fill element level by level.
+To convert Tree to array representation, fill element level by level.(level order traversal)
+
+	A Level Order Traversal is a traversal which always traverses based on the level of the tree.
 
 	
 If a Node is at ith index
@@ -29,7 +31,7 @@ If a Node is at ith index
 	Right child is at 2 * i + 1 (In 0 based index its = 2 * i + 2)
 	Parent is at floor value of i/2 (In 0 based index its = pos - 1 / 2)
 
-If a has height of h, then 
+If a full binary tree has height of h, then
 
 	max number of nodes in the tree is, 2^(h+1) - 1
 
@@ -57,4 +59,5 @@ Heapify - Procedure for creating a heap.
 			
 Heap is faster DS for implementing P queue.
 
-
+Last Non-leaf Node = (n/2) – 1
+First Lead Node = Last Non lead node + 1 => n/2
