@@ -39,14 +39,13 @@ Heap is complete binary
 
 
 Max Heap - All child nodes are smaller than the parent nodes.
-
+	
+	Insertion -> add new leaf at the end of the tree. and adjustment is done from leaf to root.  ( time comp = Log n)
+	Deletion -> delete element from root and move the last leaf to the root. Adjustment is done from root to child.   					(time comp = Log N)
+	
 Min Heap - all parent nodes are greater than child nodes. 
 
 
-
-Insertion -> add new leaf at the end of the tree. and adjustment is done from lead to root.  ( time comp = Log n)
-
-Deletion -> delete element from root. Adjustment is done from root to child.   (time comp = Log N)
 
 Creation - n * log n
 Deletion - n * log n

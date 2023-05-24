@@ -2,6 +2,12 @@ package com.ds.heap;
 
 import java.util.Arrays;
 
+/**
+ * 
+ * 
+ * @author Anto
+ *
+ */
 public class MaxHeap {
 
 	private int[] heap;
@@ -33,7 +39,13 @@ public class MaxHeap {
 	 * @param val
 	 * 
 	 */
-	public void insert(int val) {
+	public void add(int val) {
+
+		if (size >= heap.length) {
+			System.err.println("Max Heap Priority Queue is full");
+			return;
+		}
+
 		heap[size] = val;
 		int current = size;
 		while (heap[current] > heap[parent(current)]) {
@@ -50,14 +62,18 @@ public class MaxHeap {
 		heap[index2] = temp;
 	}
 
-	public int extractMax() {
+	public int pop() {
 
 		int popped = heap[0];
 		heap[0] = heap[--size];
-		heap[size] = 0;
+		heap[size] = Integer.MIN_VALUE;
 		maxHeapify(0);
 		System.out.println("After Extracting max " + popped + " : " + Arrays.toString(heap));
 		return popped;
+	}
+
+	public int peek() {
+		return heap[0];
 	}
 
 	public void maxHeapify(int index) {
@@ -90,14 +106,15 @@ public class MaxHeap {
 	public static void main(String[] args) {
 
 		MaxHeap mHeap = new MaxHeap(5);
-		mHeap.insert(20);
-		mHeap.insert(25);
-		mHeap.insert(12);
-		mHeap.insert(27);
-		mHeap.insert(2);
+		mHeap.add(20);
+		mHeap.add(25);
+		mHeap.add(12);
+		mHeap.add(27);
+		mHeap.add(2);
+		mHeap.add(12);
 		mHeap.print();
-		mHeap.extractMax();
-		mHeap.extractMax();
+		mHeap.pop();
+		mHeap.pop();
 
 	}
 
