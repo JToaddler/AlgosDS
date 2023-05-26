@@ -1,10 +1,10 @@
 package com.leetcode.array;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.TreeMap;
 
 /**
  * 
@@ -18,12 +18,12 @@ import java.util.TreeMap;
  */
 public class TopKFrequentElements347 {
 	public static void main(String[] args) {
-		topKFrequent(new int[] { 1, 1, 1, 2, 2, 3 }, 1);
+		topKFrequent(new int[] { 1, 1, 1, 2, 2, 3 ,5,5,5}, 3);
 	}
 
 	public static int[] topKFrequent(int[] nums, int k) {
 
-		Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		Queue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer>() {
 			public int compare(Integer int1, Integer int2) {
 				return map.get(int1) - map.get(int2);

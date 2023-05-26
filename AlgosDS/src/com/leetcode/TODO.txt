@@ -1,0 +1,34 @@
+Algorithms
+
+	Bucket Sort
+	HeapSort
+	
+
+DataStructure
+
+	Cache
+		LRU
+		MRU
+	Tree
+	Graph
+	Map 
+		Associative Array
+		Map
+	Heap
+		HeapifyAnArray
+		Binary Heap
+	List
+
+LeetCode
+
+	Sliding Window Median
+	Median of Number Stream
+	Leader Board  https://leetcode.com/problems/design-a-leaderboard/
+	LeetCode todo list
+	Youtube playlist
+	
+Recursion
+
+	Fibonacci
+	Factorial
+	Pattern print

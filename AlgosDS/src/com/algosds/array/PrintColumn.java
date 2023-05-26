@@ -6,9 +6,8 @@ public class PrintColumn {
 
 	public static void main(String[] args) {
 
-		Integer[][] nums = generateGrid(4, 4);
+		Integer[][] nums = generateGrid(3, 4);
 		StringBuilder sb = new StringBuilder();
-
 		for (int i = 0; i < nums[0].length; i++) {
 			for (int j = 0; j < nums.length; j++) {
 				sb.append(nums[j][i] + " ");

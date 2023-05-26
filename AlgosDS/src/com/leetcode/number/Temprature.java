@@ -1,4 +1,4 @@
-package com.leetcode.array;
+package com.leetcode.number;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,6 @@ public class Temprature {
 		double[] result = new double[ts.length];
 		for (int i = 0; i < ts.length; i++) {
 			result[i] = Math.abs(ts[i]);
-
 			map.putIfAbsent(result[i], ts[i]);
 			if (map.get(result[i]) < ts[i]) {
 				map.put(result[i], ts[i]);
@@ -27,7 +26,7 @@ public class Temprature {
 
 	public static void main(String[] args) {
 
-		double[] ts = { 7, -10, 13, 8, 4, -7.2, -12, -3.7, 3.5, -9.6, 6.5, 1.7, -1.7, -6.2, 7 };
+		double[] ts = { 7, -10, 13, 8, 4, -7.2, -12, -3.7, 3.5, -9.6, 6.5, -1.7, 1.7, -6.2, 7 };
 		System.out.println(closestToZero(ts));
 
 	}
