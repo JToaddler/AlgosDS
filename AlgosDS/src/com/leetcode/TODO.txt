@@ -12,6 +12,7 @@ DataStructure
 	Tree
 		Tree.md
 		Level order traverasl / BFS
+		BST impl https://www.java2novice.com/java-interview-programs/level-order-traversal-binary-search-tree-bst/
 	Graph
 		BFS (level order)
 		DFS
