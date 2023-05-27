@@ -6,6 +6,18 @@ import java.util.List;
 /**
  * Left Child -> Right Child -> Current Node
  * 
+ * The following steps are used to perform the postorder traversal:
+ * 
+ * Traverse the left subtree by calling the postorder function recursively.
+ * Traverse the right subtree by calling the postorder function recursively.
+ * Access the data part of the current node.
+ * 
+ * The time complexity of postorder traversal is O(n), where 'n' is the size of
+ * binary tree.
+ * 
+ * Whereas, the space complexity of postorder traversal is O(1), if we do not
+ * consider the stack size for function calls. Otherwise, the space complexity
+ * of postorder traversal is O(h), where 'h' is the height of tree.
  * 
  * https://www.javatpoint.com/postorder-traversal
  * 
@@ -15,7 +27,7 @@ import java.util.List;
 public class PostOrderTraversal {
 
 	static List<Integer> list = new ArrayList<Integer>();
-	
+
 	public static void postOrderTraversal(Node node) {
 
 		if (node == null)
