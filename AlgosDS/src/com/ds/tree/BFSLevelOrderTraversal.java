@@ -3,6 +3,20 @@ package com.ds.tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 
+ * https://www.java2novice.com/java-interview-programs/level-order-traversal-binary-search-tree-bst/
+ * 
+ * 
+ * Since each node is visited at least once, the time complexity is O(n).
+ * 
+ * The space complexity is also O(n) since the queue can contain all the leaf
+ * nodes in the worst case.
+ * 
+ * 
+ * @author Anto
+ *
+ */
 public class BFSLevelOrderTraversal {
 
 	public static void main(String[] args) {

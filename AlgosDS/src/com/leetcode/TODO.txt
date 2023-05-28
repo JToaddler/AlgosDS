@@ -13,6 +13,9 @@ DataStructure
 		Tree.md
 		Level order traverasl / BFS
 		BST impl https://www.java2novice.com/java-interview-programs/level-order-traversal-binary-search-tree-bst/
+		deletet node from BST https://www.java2novice.com/java-interview-programs/delete-node-binary-search-tree-bst/
+		https://www.java2novice.com/java-interview-programs/validate-binary-search-tree-bst/
+		
 	Graph
 		BFS (level order)
 		DFS
@@ -24,6 +27,11 @@ DataStructure
 		HeapifyAnArray
 		Binary Heap
 	List
+	
+	LinkedList
+		Remove last element from list (single)
+		Remove last element from list (double)
+		
 
 LeetCode
 
@@ -32,6 +40,10 @@ LeetCode
 	Leader Board  https://leetcode.com/problems/design-a-leaderboard/
 	LeetCode todo list
 	Youtube playlist
+	https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+	https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+	Binary Tree Max Depth
+	Binary Tree Max Path Sum
 	
 Recursion
 
