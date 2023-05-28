@@ -1,39 +1,62 @@
 package com.ds.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BST {
 
 	private Node root;
 
 	public void insert(int data) {
+
 		if (root == null) {
 			root = new Node(data);
 			return;
-		}
-		insertNode(root, data);
-		System.out.println("Inserted Node  : " + data);
+		} else
+			insertNode(root, data);
+
 	}
 
-	public void insertNode(Node node, int data) {
-		Node temp = null;
-		if (node.val >= data) {
-			if (node.left == null)
-				node.left = new Node(data);
-			else
-				temp = node.left;
-		} else {
-			if (node.right == null)
-				node.right = new Node(data);
-			else
-				temp = node.right;
+	private void levelOrderTraversal() {
+		if (root == null)
+			return;
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			Node last = queue.remove();
+			if (last.left != null)
+				queue.add(last.left);
+			if (last.right != null)
+				queue.add(last.right);
+			System.out.print(last.val + " ");
 		}
-		insertNode(temp, data);
+	}
+
+	private Node insertNode(Node node, int data) {
+
+		Node temp;
+		if (node.val > data) {
+			if (node.left == null) {
+				node.left = new Node(data);
+				return node.left;
+			} else {
+				temp = node.left;
+			}
+		} else {
+			if (node.right == null) {
+				node.right = new Node(data);
+				return node.right;
+			} else {
+				temp = node.right;
+			}
+		}
+		return insertNode(temp, data);
 	}
 
 	public static void main(String[] args) {
 
 		/**
 		 * <code>
-		 
 		 				50
 		 			  /    \
 		 			45      55
@@ -42,12 +65,20 @@ public class BST {
 		 		  			  /  \
 		 		  			 62	  79
 		
-		
 		 </code>
 		 */
 
 		BST bst = new BST();
 		bst.insert(50);
+		bst.insert(45);
+		bst.insert(55);
+		bst.insert(37);
+		bst.insert(48);
+		bst.insert(51);
+		bst.insert(68);
+		bst.insert(62);
+		bst.insert(79);
+		bst.levelOrderTraversal();
 	}
 
 }
