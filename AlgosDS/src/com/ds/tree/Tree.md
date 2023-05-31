@@ -1,5 +1,13 @@
 
 
+Tree 
+
+Binary Tree
+
+Binary Search Tree
+	
+	
+
 
 BFS (level order traversal)
 DFS 
@@ -25,3 +33,18 @@ PostOrder traversal
 	Visit all the nodes in the right subtree
 	Visit the root node
 	
+	
+AVL Tree
+
+A self-balancing tree is a binary search tree that balances the height after insertion and deletion according to some balancing rules.
+
+For BST to be an AVL tree, BST should maintain Balancing Factor. it should be in |-1,0,1|
+
+If BF =  2, then imbalance is on left tree.
+If BF = -2, then imbalance is on right tree.
+
+	LL -> LL
+	LR -> RL
+	RR -> RR
+	RL -> RL
+

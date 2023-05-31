@@ -61,3 +61,6 @@ Heap is faster DS for implementing P queue.
 
 Last Non-leaf Node = (n/2) – 1
 First Lead Node = Last Non lead node + 1 => n/2
+
+
+The process in which the binary tree is reshaped into a Heap data structure is known as Heapify.
