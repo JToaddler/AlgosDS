@@ -82,6 +82,58 @@ public class AVLTree {
 		return node;
 	}
 
+	Node deleteNode(Node root, int item) {
+
+		// Find the node to be deleted and remove it
+		if (root == null)
+			return root;
+		if (item < root.val)
+			root.left = deleteNode(root.left, item);
+		else if (item > root.val)
+			root.right = deleteNode(root.right, item);
+		else {
+			if ((root.left == null) || (root.right == null)) {
+				Node temp = null;
+				if (temp == root.left)
+					temp = root.right;
+				else
+					temp = root.left;
+				if (temp == null) {
+					temp = root;
+					root = null;
+				} else
+					root = temp;
+			} else {
+				Node temp = nodeWithMimumValue(root.right);
+				root.val = temp.val;
+				root.right = deleteNode(root.right, temp.val);
+			}
+		}
+		if (root == null)
+			return root;
+
+		// Update the balance factor of each node and balance the tree
+		root.height = max(height(root.left), height(root.right)) + 1;
+		int balanceFactor = getBalanceFactor(root);
+		if (balanceFactor > 1) {
+			if (getBalanceFactor(root.left) >= 0) {
+				return rightRotate(root);
+			} else {
+				root.left = leftRotate(root.left);
+				return rightRotate(root);
+			}
+		}
+		if (balanceFactor < -1) {
+			if (getBalanceFactor(root.right) <= 0) {
+				return leftRotate(root);
+			} else {
+				root.right = rightRotate(root.right);
+				return leftRotate(root);
+			}
+		}
+		return root;
+	}
+
 	public Node leftRotate(Node x) {
 		Node y = x.right;
 		Node T2 = y.left;
@@ -125,13 +177,17 @@ public class AVLTree {
 
 	public static void main(String[] args) {
 		AVLTree tree = new AVLTree();
-		tree.root = tree.insertNode(tree.root, 50);
-		tree.root = tree.insertNode(tree.root, 55);
-		tree.root = tree.insertNode(tree.root, 60);
-		tree.root = tree.insertNode(tree.root, 65);
-		tree.root = tree.insertNode(tree.root, 75);
-		tree.root = tree.insertNode(tree.root, 80);
-		System.out.println(tree);
+		tree.root = tree.insertNode(tree.root, 33);
+		tree.root = tree.insertNode(tree.root, 13);
+		tree.root = tree.insertNode(tree.root, 53);
+		tree.root = tree.insertNode(tree.root, 9);
+		tree.root = tree.insertNode(tree.root, 21);
+		tree.root = tree.insertNode(tree.root, 61);
+		tree.root = tree.insertNode(tree.root, 8);
+		tree.root = tree.insertNode(tree.root, 11);
+		tree.printTree(tree.root, "", true);
+		tree.root = tree.deleteNode(tree.root, 13);
+		System.out.println("After Deletion: ");
 		tree.printTree(tree.root, "", true);
 	}
 

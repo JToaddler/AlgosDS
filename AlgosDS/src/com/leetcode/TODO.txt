@@ -8,14 +8,17 @@ DataStructure
 
 	Cache
 		LRU
+		LFU
 		MRU
+		MFU
 	Tree
 		Tree.md
 		BST impl https://www.java2novice.com/java-interview-programs/level-order-traversal-binary-search-tree-bst/
+		BST deletion
 		deletet node from BST https://www.java2novice.com/java-interview-programs/delete-node-binary-search-tree-bst/
 		https://www.java2novice.com/java-interview-programs/validate-binary-search-tree-bst/
 		Inorder, post order, pre order in iterative mode
-		
+		AVL Tree Impl
 	Graph
 		BFS (level order)
 		DFS
@@ -31,7 +34,9 @@ DataStructure
 	LinkedList
 		Remove last element from list (single)
 		Remove last element from list (double)
-		
+	Set
+		Handle collisions
+		Separate chaining
 
 LeetCode
 

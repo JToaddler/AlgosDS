@@ -53,6 +53,52 @@ public class BST {
 		return insertNode(temp, data);
 	}
 
+	public void delete(int data) {
+
+	}
+
+	public Node deleteNode(Node node, int data) {
+
+		if (node == null)
+			return node;
+
+		if (node.val > data)
+			deleteNode(node.left, data);
+		else if (node.val < data) {
+			deleteNode(node.right, data);
+		}
+
+		if (node.left == null) {
+			Node temp = node.right;
+			return temp;
+		} else if (node.right == null) {
+			Node temp = node.left;
+			return temp;
+		}
+		// both child exists
+		else {
+
+			// when both child exists, find the min in the right sub tree.
+
+			Node succParent = node;
+
+			// Find successor
+			Node succ = node.right;
+
+			while (succ.left != null) {
+				succParent = succ;
+				succ = succ.left;
+			}
+			if (succParent != node)
+				succParent.left = succ.right;
+			else
+				succParent.right = succ.right;
+			node.val = succ.val;
+			return node;
+		}
+
+	}
+
 	public static void main(String[] args) {
 
 		/**
