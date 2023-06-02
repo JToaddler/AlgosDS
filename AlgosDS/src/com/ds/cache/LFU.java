@@ -16,8 +16,8 @@ public class LFU implements Cache<String, Object> {
 
 	public LFU(int size) {
 		capacity = size;
-		cache = new HashMap<String, Object>();
-		count = new HashMap<String, Integer>();
+		cache = new HashMap<String, Object>(size);
+		count = new HashMap<String, Integer>(size);
 		groupCounter = new TreeMap<Integer, LinkedList<String>>();
 	}
 

@@ -21,8 +21,7 @@ public class LFU_BF implements Cache<String, Object> {
 	public void put(String key, Object value) {
 
 		data.put(key, value);
-		counter.put(key, counter.getOrDefault(key, 0) + 1);
-		System.out.println("Date :" + data + ", counter :" + counter);
+
 		if (capacity <= data.size()) {
 			int min = Integer.MAX_VALUE;
 			for (Entry<String, Integer> set : counter.entrySet()) {
@@ -32,14 +31,19 @@ public class LFU_BF implements Cache<String, Object> {
 				if (set.getValue() == min) {
 					counter.remove(set.getKey());
 					data.remove(set.getKey());
+					break;
 				}
 			}
 		}
+		counter.put(key, counter.getOrDefault(key, 0) + 1);
+		System.out.println("Date :" + data + ", counter :" + counter);
 	}
 
 	@Override
 	public Optional<Object> get(String key) {
-		return null;
+		if (counter.containsKey(key))
+			counter.put(key, counter.getOrDefault(key, 0) + 1);
+		return Optional.ofNullable(counter.get(key));
 	}
 
 	@Override
@@ -63,15 +67,16 @@ public class LFU_BF implements Cache<String, Object> {
 		cache.put("B", "Basd");
 		cache.put("C", "Csdfgdfg");
 
-		cache.put("A", "Asdfds");
-		cache.put("B", "Basd");
-		cache.put("C", "Csdfgdfg");
+		cache.get("A");
+		cache.get("B");
+		cache.get("C");
 
 		cache.put("D", "Dsdfgdfg");
 
 		cache.put("A", "Asdfds");
 		cache.put("B", "Basd");
 		cache.put("E", "Easd");
+
 	}
 
 }
