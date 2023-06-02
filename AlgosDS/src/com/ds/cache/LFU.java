@@ -46,7 +46,8 @@ public class LFU implements Cache<String, Object> {
 
 	@Override
 	public Optional<Object> get(String key) {
-
+		if (!cache.containsKey(key))
+			return Optional.ofNullable(null);
 		if (cache.containsKey(key)) {
 			count.put(key, count.getOrDefault(key, 0) + 1);
 			groupCounter.putIfAbsent(count.get(key), new LinkedList<String>());
