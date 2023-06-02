@@ -1,4 +1,4 @@
-package com.leetcode.scratchpad;
+package com.leetcode.number;
 
 /**
  * 

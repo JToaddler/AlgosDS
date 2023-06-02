@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class ThreeSum {
 
-	/**
+	/** 
 	 * https://leetcode.com/problems/3sum/description/
 	 * 
 	 * https://leetcode.com/problems/3sum/solutions/3109452/c-easiest-beginner-friendly-sol-set-two-pointer-approach-o-n-2-logn-time-and-o-n-space/
@@ -35,7 +35,7 @@ public class ThreeSum {
 				int sum = nums[i] + nums[left] + nums[right];
 				if (sum == 0) {
 					set.add(Arrays.asList(new Integer[] { nums[i], nums[left], nums[right] }));
-					left = left + 1;
+					left = left + 1; 
 					right = right - 1;
 				} else if (sum < 0) {
 					left = left + 1;

@@ -1,7 +1,14 @@
-package com.leetcode.scratchpad;
+package com.leetcode.number;
 
 import java.util.Arrays;
 
+/**
+ * https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/
+ * 
+ * 
+ * @author Anto
+ *
+ */
 public class AverageSalary1491 {
 
 	public static void main(String[] args) {
@@ -14,7 +21,7 @@ public class AverageSalary1491 {
 	public static double average(int[] salary) {
 		Arrays.sort(salary);
 		double sum = 0;
-		double count = 0;    // 
+		double count = 0; //
 		for (int i = 1; i < salary.length - 1; i++) {
 			sum = sum + salary[i];
 			count++;

@@ -49,6 +49,8 @@ LeetCode
 	https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 	Binary Tree Max Depth
 	Binary Tree Max Path Sum
+	https://leetcode.com/problem-list/leetcode-curated-sql-70/
+	https://leetcode.com/problem-list/challenges-for-new-users/
 	
 Recursion
 
