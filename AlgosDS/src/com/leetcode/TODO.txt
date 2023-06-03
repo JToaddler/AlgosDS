@@ -39,7 +39,7 @@ DataStructure
 		Separate chaining
 
 LeetCode
-
+	https://leetcode.com/studyplan/
 	Sliding Window Median
 	Median of Number Stream
 	Leader Board  https://leetcode.com/problems/design-a-leaderboard/

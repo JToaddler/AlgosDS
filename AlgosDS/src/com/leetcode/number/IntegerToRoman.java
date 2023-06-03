@@ -13,7 +13,7 @@ import java.util.Map;
 public class IntegerToRoman {
 
 	static String[] letters = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
-	static Integer[] range = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+	static Integer[] range =  { 1000, 900,  500, 400,  100, 90,   50,  40,   10,   9,    5,   4,   1 };
 
 	static Map<String, Integer> map = new HashMap<String, Integer>(13);
 	static {
@@ -33,7 +33,7 @@ public class IntegerToRoman {
 	}
 
 	public static void main(String[] args) {
-		int num = 9;
+		int num = 1994;
 		String number = intToRomanBF(num);
 		String numers2 = intToRoman(num);
 
