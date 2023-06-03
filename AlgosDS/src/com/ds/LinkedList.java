@@ -148,6 +148,7 @@ public class LinkedList {
 		System.out.println();
 	}
 
+	// https://media.geeksforgeeks.org/wp-content/cdn-uploads/RGIF2.gif
 	public void reverseLinkedList() {
 		System.out.println(" === Before reversal ==== ");
 		printLinkedList();
