@@ -3,7 +3,7 @@ package com.leetcode.string;
 public class Palindrome {
 
 	public static void main(String[] args) {
-		String str = "annaa";
+		String str = "aanaa";
 		StringBuilder sb = new StringBuilder("");
 
 		for (int i = str.length() - 1; i >= 0; i--) {
