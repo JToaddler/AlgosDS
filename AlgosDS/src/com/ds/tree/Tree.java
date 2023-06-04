@@ -1,8 +1,8 @@
-package com.ds;
+package com.ds.tree;
 
 public class Tree {
 
-	class TreeNode {
+	public class TreeNode {
 
 		int root;
 		TreeNode left;

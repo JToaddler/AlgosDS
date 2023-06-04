@@ -1,5 +1,5 @@
 
-package com.ds;
+package com.leetcode.tree;
 
 public class BinaryTreeMaxDepth {
 
