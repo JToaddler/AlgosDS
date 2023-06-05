@@ -2,6 +2,14 @@ package com.leetcode.tree;
 
 import java.util.Arrays;
 
+/**
+ * https://leetcode.com/problems/house-robber-iii
+ * 
+ * https://www.youtube.com/watch?v=nHR8ytpzz7c
+ * 
+ * @author Anto
+ *
+ */
 public class HouseRobber3 {
 
 	class TreeNode {
