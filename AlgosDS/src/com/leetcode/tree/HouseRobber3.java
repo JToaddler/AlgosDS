@@ -1,8 +1,6 @@
 package com.leetcode.tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
 
 public class HouseRobber3 {
 
@@ -53,47 +51,31 @@ public class HouseRobber3 {
 		}
 	}
 
-	public Integer[] levelOrderTraversal(TreeNode node) {
+	public static int rob(TreeNode root) {
+		int[] result = helper(root);
+		System.out.println("Result : " + Arrays.toString(result) + ", Max Rob:" + Math.max(result[0], result[1]));
+		return Math.max(result[0], result[1]);
+	}
 
-		Queue<TreeNode> queue = new LinkedList<TreeNode>();
-		queue.add(node);
-		ArrayList<Integer> list = new ArrayList<Integer>();
-
-		while (!queue.isEmpty()) {
-			TreeNode removed = queue.remove();
-			if (removed!=null) {
-				if (removed.left != null)
-					queue.add(removed.left);
-				else
-					queue.add(null);
-				if (removed.right != null)
-					queue.add(removed.right);
-				else
-					queue.add(null);
-			}
-			if (removed != null)
-				list.add(removed.val);
-			else
-				list.add(null);
-		}
-		System.out.println(list);
-		return list.toArray(Integer[]::new);
+	public static int[] helper(TreeNode root) {
+		if (root == null)
+			return new int[] { 0, 0 };
+		int[] left = helper(root.left);
+		int[] right = helper(root.right);
+		int withRoot = root.val + left[1] + right[1];
+		int withOutRoot = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+		return new int[] { withRoot, withOutRoot };
 	}
 
 	public static void main(String[] args) {
 		HouseRobber3 robber = new HouseRobber3();
-		TreeNode tree = robber.new TreeNode(50);
-		tree.insert(tree, 45);
-		tree.insert(tree, 65);
+		TreeNode tree = robber.new TreeNode(5);
+		tree.insert(tree, 4);
+		tree.insert(tree, 6);
+		tree.insert(tree, 3);
+		tree.insert(tree, 9);
 
-		tree.insert(tree, 35);
-		tree.insert(tree, 48);
-
-		tree.insert(tree, 55);
-		tree.insert(tree, 75);
-		tree.insert(tree, 70);
-		tree.insert(tree, 80);
-		robber.levelOrderTraversal(tree);
+		rob(tree);
 	}
 
 }
