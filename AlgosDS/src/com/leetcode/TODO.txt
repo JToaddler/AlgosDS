@@ -50,7 +50,12 @@ LeetCode
 	Binary Tree Max Depth
 	Binary Tree Max Path Sum
 	https://leetcode.com/problem-list/leetcode-curated-sql-70/
-	https://leetcode.com/problem-list/challenges-for-new-users/
+	https://leetcode.com/tag/binary-search/
+	https://leetcode.com/explore/learn/card/binary-search/
+	https://leetcode.com/tag/tree/
+	https://leetcode.com/explore/learn/card/data-structure-tree/
+	https://leetcode.com/discuss/study-guide/1212004/binary-trees-study-guide
+	
 	
 Recursion
 
@@ -60,3 +65,8 @@ Recursion
 
 
 BackTracking
+
+
+Number
+
+	All type of base conversions
