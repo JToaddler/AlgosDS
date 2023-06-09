@@ -57,6 +57,10 @@ LeetCode
 	https://leetcode.com/discuss/study-guide/1212004/binary-trees-study-guide
 	
 	
+BitManipulation
+
+	Min Flips - 	https://leetcode.com/problems/minimum-bit-flips-to-convert-number/
+	
 Recursion
 
 	Fibonacci
