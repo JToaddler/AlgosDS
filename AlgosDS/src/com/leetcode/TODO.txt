@@ -20,15 +20,20 @@ DataStructure
 		Inorder, post order, pre order in iterative mode
 		AVL Tree Impl
 	Graph
+		Implementation
 		BFS (level order)
 		DFS
 			inorder, post order, pre order
+		Common application
+			union, common vertex
+		 
 	Map 
 		Associative Array
 		Map
 	Heap
 		HeapifyAnArray
 		Binary Heap
+	HashTable
 	List
 	
 	LinkedList
