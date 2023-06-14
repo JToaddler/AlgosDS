@@ -26,6 +26,7 @@ InOrder traversal
 	First, visit all the nodes in the left subtree
 	Then the root node
 	Visit all the nodes in the right subtree
+	NOTE : (start from smallest/ deepest node, it like iterating from start index of sorted array )
 	
 PreOrder traversal
 	Visit root node

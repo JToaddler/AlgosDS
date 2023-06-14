@@ -23,7 +23,7 @@ DataStructure
 		Implementation
 		BFS (level order)
 		DFS
-			inorder, post order, pre order
+			inorder, post order, pre order (iterative methods)
 		Common application
 			union, common vertex
 		 
