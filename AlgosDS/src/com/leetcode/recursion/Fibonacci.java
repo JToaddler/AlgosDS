@@ -3,7 +3,7 @@ package com.leetcode.recursion;
 public class Fibonacci {
 
 	public static void main(String[] args) {
-		int x = 5;
+		int x = 30;
 		System.out.println("Sum of first " + x + " numbers : " + fibonacci(x));
 		printFib(x);
 	}
