@@ -1,5 +1,8 @@
 package com.leetcode.linkedlist;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class DetectCycleLinkedList {
 
 	public static class ListNode {
@@ -25,8 +28,9 @@ public class DetectCycleLinkedList {
 		head.next = new ListNode(5);
 		head.next.next = new ListNode(8);
 		head.next.next.next = new ListNode(12);
-		head.next.next.next.next = head;
+		head.next.next.next.next = new ListNode(5);
 		System.out.println(new DetectCycleLinkedList().hasCycle(head));
+		System.out.println(new DetectCycleLinkedList().hasCycle2(head));
 	}
 
 	public boolean hasCycle(ListNode node) {
@@ -38,6 +42,21 @@ public class DetectCycleLinkedList {
 			fast = fast.next.next;
 			if (slow == fast)
 				return true;
+		}
+		return false;
+	}
+
+	public boolean hasCycle2(ListNode head) {
+		if (head == null)
+			return false;
+		Set<ListNode> set = new HashSet<ListNode>();
+		ListNode current = head;
+		while (current != null) {
+			current = current.next;
+			if (set.contains(current))
+				return true;
+			else
+				set.add(current);
 		}
 		return false;
 	}
