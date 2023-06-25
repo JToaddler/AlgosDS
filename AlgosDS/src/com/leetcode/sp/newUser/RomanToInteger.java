@@ -1,4 +1,4 @@
-package com.leetcode.studyplan.newUser;
+package com.leetcode.sp.newUser;
 
 import java.util.HashMap;
 import java.util.Map;
