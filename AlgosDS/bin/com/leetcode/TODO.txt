@@ -1,0 +1,81 @@
+Algorithms
+
+	Bucket Sort
+	HeapSort
+	
+
+DataStructure
+
+	Cache
+		LRU
+		LFU
+		MRU
+		MFU
+	Tree
+		Tree.md
+		BST impl https://www.java2novice.com/java-interview-programs/level-order-traversal-binary-search-tree-bst/
+		BST deletion
+		deletet node from BST https://www.java2novice.com/java-interview-programs/delete-node-binary-search-tree-bst/
+		https://www.java2novice.com/java-interview-programs/validate-binary-search-tree-bst/
+		Inorder, post order, pre order in iterative mode
+		AVL Tree Impl
+	Graph
+		Implementation
+		BFS (level order)
+		DFS
+			inorder, post order, pre order (iterative methods)
+		Common application
+			union, common vertex
+		 
+	Map 
+		Associative Array
+		Map
+	Heap
+		HeapifyAnArray
+		Binary Heap
+	HashTable
+	List
+	
+	LinkedList
+		Remove last element from list (single)
+		Remove last element from list (double)
+	Set
+		Handle collisions
+		Separate chaining
+
+LeetCode
+	https://leetcode.com/studyplan/
+	Sliding Window Median
+	Median of Number Stream
+	Leader Board  https://leetcode.com/problems/design-a-leaderboard/
+	LeetCode todo list
+	Youtube playlist
+	https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+	https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+	Binary Tree Max Depth
+	Binary Tree Max Path Sum
+	https://leetcode.com/problem-list/leetcode-curated-sql-70/
+	https://leetcode.com/tag/binary-search/
+	https://leetcode.com/explore/learn/card/binary-search/
+	https://leetcode.com/tag/tree/
+	https://leetcode.com/explore/learn/card/data-structure-tree/
+	https://leetcode.com/discuss/study-guide/1212004/binary-trees-study-guide
+	https://leetcode.com/contest/weekly-contest-348/problems/count-of-integers/
+	
+BitManipulation
+
+	Min Flips - 	https://leetcode.com/problems/minimum-bit-flips-to-convert-number/
+	
+Recursion
+
+	Fibonacci
+	Factorial
+	Pattern print
+
+
+BackTracking
+
+
+Number
+
+	All type of base conversions
