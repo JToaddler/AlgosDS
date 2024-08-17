@@ -2,7 +2,7 @@ package leetcode.input;
 
 import java.util.Arrays;
 
-public class Array2DBuilder {
+public class ArrayBuilder {
 
 	public static int[][] build2dArray(int rows, int col) {
 
@@ -17,4 +17,14 @@ public class Array2DBuilder {
 		}
 		return array;
 	}
+
+	public static int[] buildArray(int count) {
+		int[] nums = new int[count];
+		for (int i = 0; i < count; i++) {
+			nums[i] = Double.valueOf(Math.random() * 100).intValue();
+		}
+		System.out.println(Arrays.toString(nums));
+		return nums;
+	}
+
 }

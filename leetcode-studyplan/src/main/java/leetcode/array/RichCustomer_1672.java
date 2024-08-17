@@ -1,6 +1,6 @@
 package leetcode.array;
 
-import leetcode.input.Array2DBuilder;
+import leetcode.input.ArrayBuilder;
 
 public class RichCustomer_1672 {
 
@@ -23,7 +23,7 @@ public class RichCustomer_1672 {
 
 	public static void main(String[] args) {
 		RichCustomer_1672 ob = new RichCustomer_1672();
-		int[][] accounts = Array2DBuilder.build2dArray(2, 3);
+		int[][] accounts = ArrayBuilder.build2dArray(2, 3);
 		ob.maximumWealth(accounts);
 	}
 
