@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class RemoveDuplicateSortedArray {
 
 	public static void main(String[] args) {
-		deleteDuplicate(new int[] { 1, 1, 2 });
+		deleteDuplicate(new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 });
 	}
 
 	public static int deleteDuplicate(int[] nums) {
