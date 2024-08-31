@@ -3,7 +3,7 @@ package leetcode.array;
 /**
  * https://leetcode.com/problems/valid-mountain-array/description/
  * 
- * @author 
+ * @author
  *
  */
 public class ValidMountains {
