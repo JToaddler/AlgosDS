@@ -57,4 +57,17 @@ public class InsertionSort {
 			}
 		}
 	}
+
+	public static void insertionSort_v2(int[] nums) {
+		for (int i = 1; i < nums.length; i++) {
+			int index = i;
+			while (index > 0 && nums[index - 1] > nums[index]) {
+				int temp = nums[index];
+				nums[index] = nums[index - 1];
+				nums[index - 1] = temp;
+				index = index - 1;
+			}
+		}
+	}
+
 }

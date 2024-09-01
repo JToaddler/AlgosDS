@@ -28,23 +28,21 @@ public class BubbleSort {
 		bubbleSort(array);
 	}
 
-	public static void bubbleSort(int[] array) {
+	public static void bubbleSort(int[] nums) {
 
-		int n = array.length;
-		for (int i = 0; i < n - 1; i++) {
-			boolean swapped = false;
-			for (int j = 0; j < n - 1 - i; j++) {
-				if (array[j] > array[j + 1]) {
-					int temp = array[j];
-					array[j] = array[j + 1];
-					array[j + 1] = temp;
+		boolean swapped = true;
+		while (swapped) {
+			swapped = false;
+			for (int i = 0; i < nums.length - 1; i++) {
+				if (nums[i] > nums[i + 1]) {
+					int temp = nums[i + 1];
+					nums[i + 1] = nums[i];
+					nums[i] = temp;
 					swapped = true;
 				}
 			}
-			if (swapped == false)
-				break;
 		}
-		System.out.println("Sorted Array :" + Arrays.toString(array));
+		System.out.println("Sorted Array :" + Arrays.toString(nums));
 	}
 
 	public static int[] generateArray(int n) {
