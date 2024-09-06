@@ -21,7 +21,7 @@ public class TopKFrequentElements347 {
 		topKFrequent(new int[] { 1, 1, 1, 2, 2, 3 ,5,5,5}, 3);
 	}
 
-	public static int[] topKFrequent(int[] nums, int k) { 
+	public static int[] topKFrequent(int[] nums, int k) {
 
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		Queue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer>() {
