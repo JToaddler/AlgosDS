@@ -7,13 +7,13 @@ public class SearchRotatedArray {
 	public static void main(String[] args) {
 
 		// int[] arr = buildArray(6);
-		int[] arr = { 2, 4, 5, 6, 7, 12, };
+		int[] arr = { 1, 2, 3, 4, 5 };
 		int target = 2;
 		Arrays.sort(arr);
 		System.out.println("Sroted :" + Arrays.toString(arr));
 		rotateArray(arr, 2);
 		System.out.println("Sroted :" + Arrays.toString(arr));
-		System.out.println(findPivot(arr, target));
+		System.out.println(findPivot(arr, 1));
 
 	}
 
