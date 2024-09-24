@@ -12,10 +12,9 @@ public class PrintDiagnol2DArray {
 		System.out.println("----------------------------");
 
 		for (int i = 0; i < grid.length; i++) {
-			if (i < grid[i].length)
-				System.out.println(grid[i][i]);
+			int j = i;
+			System.out.println(grid[i][j]);
 		}
-
 	}
 
 	public static int[][] generateGrid(int rCount, int cCount) {
