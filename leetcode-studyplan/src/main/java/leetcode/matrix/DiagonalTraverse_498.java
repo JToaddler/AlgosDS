@@ -16,15 +16,16 @@ public class DiagonalTraverse_498 {
 
 	public static void main(String[] args) {
 
+		// int[][] grid = ArrayBuilder.build2dArray(3, 3);
 		int[][] grid = ArrayBuilder.build2dArray(6, 2);
-
 		findDiagonalOrder(grid);
 	}
 
 	public static int[] findDiagonalOrder(int[][] grid) {
 		int[] row = grid[0];
-		List<Integer> list = new ArrayList<>();
-		int[] nums = new int[grid.length * grid[0].length];
+		int n = grid.length;
+		int m = grid[0].length;
+		int[] nums = new int[n * m];
 		int k = 0;
 		if (row.length == 1) {
 			for (int[] arr : grid) {
@@ -32,43 +33,40 @@ public class DiagonalTraverse_498 {
 			}
 			return nums;
 		}
+		List<Integer> list = new ArrayList<>();
 		boolean flip = true;
-		for (int index = 0; index < row.length; index++) {
+		for (int index = 0; index < m; index++) {
 			int i = 0;
-			for (int j = index; j >= 0 && i < grid.length; j--, i++) {
+			for (int j = index; j >= 0 && i < n; j--, i++) {
 				list.add(grid[i][j]);
 			}
 			if (flip) {
-				for (int x = list.size() - 1; x >= 0; x--) {
-					nums[k++] = list.get(x);
+				for (int a = list.size() - 1; a >= 0; a--) {
+					nums[k++] = list.get(a);
 				}
 			} else {
-				for (int a : list) {
+				for (Integer a : list)
 					nums[k++] = a;
-				}
 			}
-			list.clear();
 			flip = flip ? false : true;
+			list.clear();
 		}
-		System.out.println(Arrays.toString(nums));
-		for (int index = 1; index < grid.length; index++) {
+		for (int index = 1; index < n; index++) {
 			int i = index;
-			for (int j = row.length - 1; j >= 0 && i < grid.length; j--, i++) {
+			for (int j = m - 1; j >= 0 && i < n; j--, i++) {
 				list.add(grid[i][j]);
 			}
 			if (flip) {
-				for (int x = list.size() - 1; x >= 0; x--) {
-					nums[k++] = list.get(x);
+				for (int a = list.size() - 1; a >= 0; a--) {
+					nums[k++] = list.get(a);
 				}
 			} else {
-				for (int a : list) {
+				for (Integer a : list)
 					nums[k++] = a;
-				}
 			}
-			list.clear();
 			flip = flip ? false : true;
+			list.clear();
 		}
-		System.out.println(Arrays.toString(nums));
 		return nums;
 	}
 }
