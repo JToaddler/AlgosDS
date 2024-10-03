@@ -1,6 +1,11 @@
 package com.algosds.array;
 
+import java.util.Arrays;
+
 /**
+ * 189
+ * 
+ * https://leetcode.com/problems/rotate-array/
  * 
  * Time complexity: O(N) Auxiliary Space: O(D)
  * 
@@ -15,18 +20,21 @@ package com.algosds.array;
  */
 public class Rorate1DArray {
 
-	public static int[] rotateArrayUsingTempArray(int[] array, int index) {
+	public void rotate(int[] nums, int k) {
+		k %= nums.length;
+		reverse(nums, 0, nums.length - 1);
+		reverse(nums, 0, k - 1);
+		reverse(nums, k, nums.length - 1);
+	}
 
-		int[] temp = new int[array.length];
-		// Copy sub array 1 - after index
-		for (int i = index, j = 0; i < array.length; i++, j++) {
-			temp[j] = array[i];
+	public void reverse(int[] nums, int start, int end) {
+		while (start < end) {
+			int temp = nums[end];
+			nums[end] = nums[start];
+			nums[start] = temp;
+			start++;
+			end--;
 		}
-		// Copy sub array 2 - before index
-		for (int i = 0, j = index + 1; i < index; i++, j++) {
-			temp[j] = array[i];
-		}
-		return temp;
 	}
 
 	public static int[] rotateArrayByIndex(int[] array, int index) {
@@ -34,7 +42,7 @@ public class Rorate1DArray {
 		for (int i = 0; i < index; i++) {
 			rotateArrayByOne(array);
 		}
-		print(array);
+		System.out.println(Arrays.toString(array));
 		return array;
 	}
 
@@ -48,24 +56,14 @@ public class Rorate1DArray {
 		return array;
 	}
 
-	public static void print(int[] letters) {
-		StringBuilder sb = new StringBuilder("[");
-		for (int i = 0; i < letters.length; i++) {
-			sb.append(letters[i] + ", ");
-		}
-		System.out.println(sb.toString());
-
-	}
-
 	public static void main(String[] args) {
 
-		int[] intArray = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+		int[] intArray = new int[] { -1, -100, 3, 99 };
 		int[] intArray2 = new int[] { 1, 2, 3, 4, 5, 6, 7 };
 
-		int shiftPosition = 3;
-		// rotateArrayUsingTempArray(intArray, shiftPosition);
+		int shiftPosition = 2;
 		// rotateArrayByOne(intArray);
-		print(intArray2);
+		System.out.println(Arrays.toString(intArray2));
 		rotateArrayByIndex(intArray2, 5);
 	}
 }
