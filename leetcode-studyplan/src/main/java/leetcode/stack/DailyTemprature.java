@@ -1,4 +1,4 @@
-package leetcode.stack.monotonic;
+package leetcode.stack;
 
 import java.time.LocalDateTime;
 import java.util.ArrayDeque;
