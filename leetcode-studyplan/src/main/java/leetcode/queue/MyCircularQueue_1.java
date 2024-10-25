@@ -2,14 +2,14 @@ package leetcode.queue;
 
 import java.util.Arrays;
 
-class MyCircularQueue {
+class MyCircularQueue_1 {
 
 	int[] queue;
 	int capacity;
 	int head = 0;
 	int count;
 
-	public MyCircularQueue(int k) {
+	public MyCircularQueue_1(int k) {
 		this.capacity = k;
 		queue = new int[k];
 		count = 0;
@@ -55,7 +55,7 @@ class MyCircularQueue {
 	}
 
 	public static void main(String[] args) {
-		MyCircularQueue que = new MyCircularQueue(3);
+		MyCircularQueue_1 que = new MyCircularQueue_1(3);
 		que.enQueue(1);
 		que.enQueue(2);
 		que.enQueue(3);
