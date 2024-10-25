@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * https://leetcode.com/problems/walls-and-gates/editorial/
  * 
  */
-public class WallsAndGates_BF {
+public class WallsAndGates {
 
 	private static final int EMPTY = Integer.MAX_VALUE;
 	private static final int GATE = 0;
