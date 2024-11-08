@@ -3,6 +3,8 @@ package leetcode.linkedlist;
 import java.util.HashSet;
 import java.util.Set;
 
+import leetcode.model.ListNode;
+
 /**
  * https://leetcode.com/problems/intersection-of-two-linked-lists/
  * 

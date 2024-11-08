@@ -3,6 +3,8 @@ package leetcode.linkedlist;
 import java.util.HashSet;
 import java.util.Set;
 
+import leetcode.model.ListNode;
+
 /**
  * https://leetcode.com/problems/linked-list-cycle/
  * 
@@ -52,19 +54,4 @@ public class LinkedListCycleDetection {
 		return false;
 	}
 
-}
-
-class ListNode {
-	int val;
-	ListNode next;
-
-	ListNode(int x) {
-		val = x;
-		next = null;
-	}
-
-	ListNode(int x, ListNode next) {
-		this.val = x;
-		this.next = next;
-	}
 }

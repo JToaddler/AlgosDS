@@ -1,5 +1,7 @@
 package leetcode.linkedlist;
 
+import leetcode.model.ListNode;
+
 /**
  * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
  * 
