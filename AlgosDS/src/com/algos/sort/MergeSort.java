@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class MergeSort {
 
-	public void mergeSort(Integer[] array, int l, int m, int r) {
+	public static void mergeSort(int[] array, int l, int m, int r) {
 
 		// System.out.println(" > " + l + " " + m + " " + r + ": ");
 
@@ -49,7 +49,7 @@ public class MergeSort {
 
 	}
 
-	public void sort(Integer[] array, int l, int r) {
+	public static void sort(int[] array, int l, int r) {
 
 		// System.out.println(Arrays.asList(Arrays.copyOfRange(array, l, r)));
 		if (l < r) {
@@ -67,16 +67,48 @@ public class MergeSort {
 
 	public static void main(String[] args) {
 
-		int siz = 1000000;
-		Integer[] array = new Integer[siz];
+		int siz = 3;
+		int[] array = new int[siz];
 		IntStream.range(0, siz).forEach(id -> {
-			array[id] = (int) ((Math.random() * Math.random()) * 1000);
+			array[id] = (int) ((Math.random() * Math.random()) * 100);
 		});
-		System.out.println("UnSorted array :" + Arrays.asList(array));
-		MergeSort mSort = new MergeSort();
-		mSort.sort(array, 0, siz - 1);
-		System.out.println("Sorted array :" + Arrays.asList(array));
+		System.out.println("UnSorted array :" + Arrays.toString(array));
+		sort(array, 0, siz - 1);
+		
+		//int[] result = mergeSort_Leetcode(array);
+		//System.out.println("Sorted array :" + Arrays.toString(result));
 
+	}
+
+	public static int[] mergeSort_Leetcode(int[] array) {
+		if (array.length <= 1) {
+			return array;
+		}
+		int pivot = array.length / 2;
+		int[] left = mergeSort_Leetcode(Arrays.copyOfRange(array, 0, pivot));
+		int[] right = mergeSort_Leetcode(Arrays.copyOfRange(array, pivot, array.length));
+		return merge(left, right);
+	}
+
+	public static int[] merge(int[] left, int[] right) {
+
+		int[] res = new int[left.length + right.length];
+		int resIndex = 0, lIndex = 0, rIndex = 0;
+
+		while (lIndex < left.length && rIndex < right.length) {
+			if (left[lIndex] < right[rIndex]) {
+				res[resIndex++] = left[lIndex++];
+			} else {
+				res[resIndex++] = right[rIndex++];
+			}
+		}
+		while (rIndex < right.length) {
+			res[resIndex++] = right[rIndex++];
+		}
+		while (lIndex < left.length) {
+			res[resIndex++] = left[lIndex++];
+		}
+		return res;
 	}
 
 }
