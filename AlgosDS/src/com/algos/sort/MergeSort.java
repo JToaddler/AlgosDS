@@ -110,5 +110,48 @@ public class MergeSort {
 		}
 		return res;
 	}
+	
+	
+	
+	
+	public int[] sortArray(int[] nums) {
+        mergeSort(nums, 0, nums.length-1);
+        return nums;
+    }
+	
+	public void mergeSort(int[] nums, int l, int r){
+        if(l < r){
+            int m = (l + r)/2;
+            mergeSort(nums, l, m);
+            mergeSort(nums, m+1, r);
+            mergeArray(nums, l, m, r);
+        }
+    }
+
+    public void mergeArray(int[] nums, int l, int m, int r){
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        int[] temp1 = new int[n1];
+        int[] temp2 = new int[n2];
+
+        for(int i = 0; i < n1; i++)
+            temp1[i] = nums[l+i];
+        for(int j = 0; j < n2; j++)
+            temp2[j] = nums[m+j+1];
+        
+        int i = 0, j = 0;
+        int k = l;
+        while(i < n1 && j < n2){
+            if(temp1[i] < temp2[j]){
+                nums[k++] = temp1[i++];
+            }else{
+                nums[k++] = temp2[j++];
+            }
+        }
+        while(i < n1)
+            nums[k++] = temp1[i++];
+        while(j < n2)
+            nums[k++] = temp2[j++];
+    }
 
 }
