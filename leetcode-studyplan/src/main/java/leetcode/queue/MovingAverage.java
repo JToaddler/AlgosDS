@@ -13,7 +13,7 @@ public class MovingAverage {
 	int size;
 	int windowSum = 0, count = 0;
 	Queue<Integer> queue = new LinkedList<>();
-
+	
 	public MovingAverage(int size) {
 		this.size = size;
 	}
