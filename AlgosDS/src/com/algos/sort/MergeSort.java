@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class MergeSort {
 
-	public void mergeSort(Integer[] array, int l, int m, int r) {
+	public static void mergeSort(int[] array, int l, int m, int r) {
 
 		// System.out.println(" > " + l + " " + m + " " + r + ": ");
 
@@ -49,7 +49,7 @@ public class MergeSort {
 
 	}
 
-	public void sort(Integer[] array, int l, int r) {
+	public static void sort(int[] array, int l, int r) {
 
 		// System.out.println(Arrays.asList(Arrays.copyOfRange(array, l, r)));
 		if (l < r) {
@@ -67,16 +67,91 @@ public class MergeSort {
 
 	public static void main(String[] args) {
 
-		int siz = 1000000;
-		Integer[] array = new Integer[siz];
+		int siz = 3;
+		int[] array = new int[siz];
 		IntStream.range(0, siz).forEach(id -> {
-			array[id] = (int) ((Math.random() * Math.random()) * 1000);
+			array[id] = (int) ((Math.random() * Math.random()) * 100);
 		});
-		System.out.println("UnSorted array :" + Arrays.asList(array));
-		MergeSort mSort = new MergeSort();
-		mSort.sort(array, 0, siz - 1);
-		System.out.println("Sorted array :" + Arrays.asList(array));
+		System.out.println("UnSorted array :" + Arrays.toString(array));
+		sort(array, 0, siz - 1);
+		
+		//int[] result = mergeSort_Leetcode(array);
+		//System.out.println("Sorted array :" + Arrays.toString(result));
 
 	}
+
+	public static int[] mergeSort_Leetcode(int[] array) {
+		if (array.length <= 1) {
+			return array;
+		}
+		int pivot = array.length / 2;
+		int[] left = mergeSort_Leetcode(Arrays.copyOfRange(array, 0, pivot));
+		int[] right = mergeSort_Leetcode(Arrays.copyOfRange(array, pivot, array.length));
+		return merge(left, right);
+	}
+
+	public static int[] merge(int[] left, int[] right) {
+
+		int[] res = new int[left.length + right.length];
+		int resIndex = 0, lIndex = 0, rIndex = 0;
+
+		while (lIndex < left.length && rIndex < right.length) {
+			if (left[lIndex] < right[rIndex]) {
+				res[resIndex++] = left[lIndex++];
+			} else {
+				res[resIndex++] = right[rIndex++];
+			}
+		}
+		while (rIndex < right.length) {
+			res[resIndex++] = right[rIndex++];
+		}
+		while (lIndex < left.length) {
+			res[resIndex++] = left[lIndex++];
+		}
+		return res;
+	}
+	
+	
+	
+	
+	public int[] sortArray(int[] nums) {
+        mergeSort(nums, 0, nums.length-1);
+        return nums;
+    }
+	
+	public void mergeSort(int[] nums, int l, int r){
+        if(l < r){
+            int m = (l + r)/2;
+            mergeSort(nums, l, m);
+            mergeSort(nums, m+1, r);
+            mergeArray(nums, l, m, r);
+        }
+    }
+
+    public void mergeArray(int[] nums, int l, int m, int r){
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        int[] temp1 = new int[n1];
+        int[] temp2 = new int[n2];
+
+        for(int i = 0; i < n1; i++)
+            temp1[i] = nums[l+i];
+        for(int j = 0; j < n2; j++)
+            temp2[j] = nums[m+j+1];
+        
+        int i = 0, j = 0;
+        int k = l;
+        while(i < n1 && j < n2){
+            if(temp1[i] < temp2[j]){
+                nums[k++] = temp1[i++];
+            }else{
+                nums[k++] = temp2[j++];
+            }
+        }
+        while(i < n1)
+            nums[k++] = temp1[i++];
+        while(j < n2)
+            nums[k++] = temp2[j++];
+    }
 
 }

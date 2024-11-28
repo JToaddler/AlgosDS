@@ -40,12 +40,12 @@ If a full binary tree has height of h, then
 Heap is complete binary
 
 
-Max Heap - All child nodes are smaller than the parent nodes.
+Max Heap - All parent nodes are greater than the child nodes.
 	
 	Insertion -> add new leaf at the end of the tree. and adjustment is done from leaf to root.  ( time comp = Log n)
 	Deletion -> delete element from root and move the last leaf to the root. Adjustment is done from root to child.   					(time comp = Log N)
 	
-Min Heap - all parent nodes are greater than child nodes. 
+Min Heap - all parent nodes are smaller than child nodes. 
 
 
 
@@ -59,8 +59,15 @@ Heapify - Procedure for creating a heap.
 			
 Heap is faster DS for implementing P queue.
 
-Last Non-leaf Node = (n/2) – 1
-First Lead Node = Last Non lead node + 1 => n/2
+Last Non-leaf Node in array (In other words. last index of non lead node) = (n/2) – 1
+First leaf Node = Last Non lead node + 1 => n/2
 
 
 The process in which the binary tree is reshaped into a Heap data structure is known as Heapify.
+
+	For an element in the ith Index in an array, 
+		The element in the index 2i+1 will become the left child 
+		The element in 2i+2 index will become the right child.
+		The parent of any element at index i is given by the lower bound of (i-1)/2.
+		
+Refer Tree.md for Tree classification

@@ -9,12 +9,14 @@ import java.util.stream.IntStream;
  * 
  * Things to remember
  * 
- * Step 1 : start heapify the array. start from last non lead node. First non
- * lead node = (n/2) -1 [n is the number of element in array]
+ * Step 1 : start heapify the array. start from last non leaf node. last non
+ * leaf node = (n/2) -1 [n is the number of element in array]
  * 
  * Step 2: delete the root (largest in the max heap) and add it to the last.
  * 
  * Step 3: For every deletion, start heapify the array
+ * 
+ * Step 2 & 3 is the sorting takes place. Step 1 is precursor to head sort(heapify the array)
  * 
  * @author Anto
  *
@@ -64,5 +66,4 @@ public class HeapSort {
 			maxHeapify(arr, heapSize, parent);
 		}
 	}
-
 }
