@@ -1,4 +1,4 @@
-package com.leetcode.array;
+package leetcode.stack;
 
 import java.util.Stack;
 
@@ -17,17 +17,16 @@ public class LargestRectangleInHistogram {
 
 	public static void main(String[] args) {
 		int[] heights = { 2, 1, 5, 6, 2, 3 };
-		findMaxRectangle(heights);
+		findMaxRectangle_optimized(heights);
 	}
 
-	public static int findMaxRectangle(int[] heights) {
+	public static int findMaxRectangle_optimized(int[] heights) {
 		int maxArea = 0;
-		
+
 		if (heights == null || heights.length == 0)
 			return maxArea;
 		if (heights.length == 1)
 			return heights[0];
-		
 
 		Stack<int[]> stack = new Stack<int[]>();
 		for (int i = 0; i < heights.length; i++) {
@@ -50,4 +49,21 @@ public class LargestRectangleInHistogram {
 		return maxArea; // TODO
 	}
 
+	/**
+	 * Time complexity: O(n). n numbers are pushed and popped.
+	 * 
+	 * Space complexity: O(n). Stack is used.
+	 */
+	public static int largestRectangleArea_BruteForce(int[] heights) {
+		int maxArea = 0;
+		int len = heights.length;
+		for (int i = 0; i < len; i++) {
+			int minHeight = Integer.MAX_VALUE;
+			for (int j = i; j < len; j++) {
+				minHeight = Math.min(minHeight, heights[j]);
+				maxArea = Math.max(maxArea, minHeight * (j - i + 1));
+			}
+		}
+		return maxArea;
+	}
 }
