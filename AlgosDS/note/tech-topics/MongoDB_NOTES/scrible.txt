@@ -1,0 +1,74 @@
+In relational databases, data modeling typically 
+progresses by modeling your data as a series of tables, consisting of rows and columns, 
+which collectively define the schema of your data. 
+
+Schema normalization typically begins by putting your application data into the first normal form.
+
+considering the ACA DB schema, explain the current DB design & list out no of
+ 
+Foregin & primary keys
+
+A fully Denormalized Table is MREF. Where REG is key to get a value ?
+
+Need for Normalization ?
+
+
+What is de Normalization ? 
+
+Document oriented data base offers denormalized data modeling with out duplicates.
+
+
+We can put department inside location. We can put location inside countries. 
+
+We can put country inside region.
+
+Now explain semantics of Document in Mongo (JSON)
+
+Explain join with denormalized data to get regionla info of an employee.
+
+This is how we are getting higher read(read operations) performance in Mongo.
+
+=========================================================================
+
+	
+	Now explain abt key value Pairs
+	
+	Basic Unit in mongoDB is Document
+	
+	Exaplin abt Collection 
+	
+	Schemaless Document & Schemaless Collection	
+	
+	keys are no fixed to specifi type & size 
+	
+	collections are not fixed to specific Document
+	
+	So we can put anything in a single collection
+	
+	### NOW EXPLAIN WHAT CAN GO WRONG WHEN THERE IS NO SCHEMA ##
+	## HOW TO INDEX A COLLECTION WHEN WE PUT DIFFERENT TYPE OF DOC IN SAME Cllection ##
+
+=========================================================================
+
+	Connection to Shell
+	
+	list collections 
+	
+	list DBs
+
+	js script execution
+	
+	show help function
+	
+	simple query with iteration
+
+=========================================================================
+	
+	SQL & NoSQL 
+	
+	SQL consists of CLAUSE, 
+	NoSQL consists of function and operators
+	
+=========================================================================
+
+	

@@ -1,0 +1,78 @@
+Singleton 	- 
+Factory  	-  The Factory Method Pattern defines an interface for creating an object, but lets subclasses decide which
+				class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+				
+				
+Decorator  	- The Decorator Pattern attaches additional responsibilities to an object dynamically.
+Decorators provide a flexible alternative to subclassing for extending functionality.
+
+InputStream -> FileInputStream
+
+Template 	- A “template method” defines the steps of an algorithm,  deferring to subclasses for the implementation of those steps
+
+The Singleton Pattern ensures a class has only one instance, and provides a global point of access to it.
+
+public MyClass {
+
+	private MyClass myClass = null;
+
+	private MyClass() {}
+	
+	public static MyClass getInstance() {
+		synchronized(MyClass.class){
+			if(myClass==null){
+				myClass = new MyClass();
+				return myClass;
+			}else  {
+				return myClass;
+			}
+		}
+	}
+}
+
+EIP Patterns
+
+	Channel
+	Gatway
+	Adapter
+	Filter
+	Router
+	Splitter
+	Aggregator
+	Polling Consumer
+	Publish & Subscriber
+
+:::::::::::::: Algos & DATA Structure ::::::::::::::
+
+BST
+Hashing 
+Work Stealing (E3 batch & Spliterator Java 8) 
+LinkedBlockingQueue 
+Compare & Swap (AtomicInteger) 
+
+ConcurrentHashMap - A Map providing thread safety (synchronized) and atomicity guarantees.
+
+	BFS:
+		
+
+	DFS:
+		Inorder Traversal	:
+								Traverse the left sub-tree
+								Traverse the root node
+								Traverse the right sub-tree
+									
+		Preorder Traversal	:
+								Traverse the root node
+								Traverse the left sub-tree
+								Traverse the right sub-tree
+								
+		Postorder Traversal	:
+								Traverse the left sub-tree
+								Traverse the right sub-tree
+								Traverse the root node								
+
+
+https://www.baeldung.com/cs/depth-first-traversal-methods
+
+
+Sorting

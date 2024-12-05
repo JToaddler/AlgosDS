@@ -1,0 +1,31 @@
+WealthSimple
+
+
+
+
+Create a class for manipulating a rover-like object.
+Create a class for computing the balance of a stream of banking transactions.
+Present a system you've designed in the past in great detail.
+
+
+BYOS - Explain difference between various caching solutions.
+
+
+
+- A Mars rover type screen call
+- Present a project you worked on
+- Work through a list of banking operations and return some values.
+
+
+Mars Rover
+Stock Program
+Bring your own System.
+
+
+Develop a Mars rover system that can move throughout a 2D grid.
+
+Develop a system that takes in trading activity and calculates a final balance/stock quantities.
+
+How would you scale a system out?
+
+API design question around payload sizes

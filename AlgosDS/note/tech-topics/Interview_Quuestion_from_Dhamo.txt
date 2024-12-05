@@ -1,0 +1,537 @@
+Int 1:-
+Spring MVC monolithic App to micro services (use case given, need to explain architecture)
+bamboo CICD advantage and steps
+design pattern
+lambda trigger (real time example -where we can use it)
+more traffic to spring rest service (how will you scale your app)
+How do we allocate memory in RDS instance
+Spring rest API operations/methods with examples
+PCF platform internal architecture
+PCF database access
+
+Encapsulation  - Encapsulation in Java is a process of wrapping code and data together into a single unit.
+				 Also limiting the access to those data & member methods using access modifiers (private, protected, public, default)
+				 
+Polymorphisim - Polymorphism is the ability of an object to take on many forms. Any Java object that can pass more than one IS-A test is considered to be polymorphic. In Java, all Java objects are polymorphic since any object will pass the IS-A test for their own type and for the class Object. In java polymorphism is achieved using inheritance.
+
+
+Inheritance   - A mechanism in which one object acquires all the properties and behaviors of a parent object.
+
+
+
+Int 2:-
+spring boot project structure
+new relic and splunk log connection
+pl/sql SP
+		
+ 
+
+overview of hystrix ribbon eureka 
+process of war to web sphere deployment
+
+Int 3:-
+Diff micro service components 
+Aws lambda
+amazon Iaas,Paas,Saas 
+comparator interface how it will work (example based)
+list vs set (arraylist vs hashset internal implemenation)
+
+	
+
+immutable classes and why its immutable
+singleton pattern on spring
+inner join vs outer join
+			
+			 Returns records that have matching values in both tables
+			 Left outer join - A left outer join will give all rows in A, plus any common rows in B.
+			 
+find duplicate rows in a table using sql query
+
+Int 4:-
+Private method junit (java refelction)
+find a duplicate char in a string (options) 
+string buffer vs string builder 
+
+sorting based on class variables (using comparator and comparable)
+
+caching concepts
+
+		
+hash map vs tree map 
+
+
+
+spring mvc flow
+spring aop
+singlton vs prototype
+spring security
+rest service security option using encryption
+spring boot profile based property lookup
+actuators
+scaling a spring boot app
+defining port for spring boot app
+
+		server:
+		  port: 5000
+		  servlet:
+			context-path: /demo-api
+
+aws lambda
+
+circuit breaking concept hystrix
+
+
+
+Spring app context vs bean factory
+	
+	BeanFactory loads beans on-demand, while ApplicationContext loads all beans at startup.
+	BeanFactory provides basic IOC and DI features while Application Context provides advanced features (Internationalization , Event Publishing, Autowiring, Integration with Spring AOP)
+	
+arraylist vs linked list
+
+
+Int 5: Anto
+
+when to use setter injection and when to constructor injection ?
+
+Interrupt
+Fork Join
+
+	Applying a divide and conquer principle, the framework recursively divides the task into smaller subtasks until a given threshold is reached. This is the fork part.
+
+	Then, the subtasks are processed independently and if they return a result, all the results are recursively combined into a single result. This is the join part.
+
+
+Concurrency vs Parallelism ?
+
+	Concurrency is when two or more tasks can start, run, and complete in overlapping time periods. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
+
+	Parallelism is when tasks literally run at the same time, e.g., on a multicore processor.
+
+
+Design Pattern (Bean Factory, Interrupt)
+Java 8 Hands on
+Map internal Implementation
+
+Class loader Types: 
+
+	BootStrap ClassLoader: A Bootstrap Classloader is a Machine code which kickstarts the operation when the JVM calls it. It is not a java class. Its job is to load the first pure Java ClassLoader. Bootstrap ClassLoader loads classes from the location rt.jar. Bootstrap ClassLoader doesn’t have any parent ClassLoaders. It is also called as the Primordial ClassLoader.
+	
+	Extension ClassLoader: The Extension ClassLoader is a child of Bootstrap ClassLoader and loads the extensions of core java classes from the respective JDK Extension library. It loads files from jre/lib/ext directory or any other directory pointed by the system property java.ext.dirs.
+	
+	System ClassLoader: An Application ClassLoader is also known as a System ClassLoader. It loads the Application type classes found in the environment variable CLASSPATH, -classpath or -cp command line option. The Application ClassLoader is a child class of Extension ClassLoader.
+
+Jdk class loading sequence
+
+		loading
+		linking
+		verification
+		
+		 Loading is the process of finding the binary representation of a class or interface type with a particular name and creating a class or interface from that binary representation. 
+		 
+		 Linking is the process of taking a class or interface and combining it into the run-time state of the Java Virtual Machine so that it can be executed. 
+		 
+		 Initialization of a class or interface consists of executing the class or interface initialization method <clinit> (§2.9).
+		
+
+
+Difference between Callable and Runnable and Future?
+	
+	Thread pool:
+	
+	It creates Threads and manages them. Instead of creating Thread and discarding them once the task is done, thread-pool reuses threads in form of a worker thread. 
+
+	Thread Pool Types:
+		
+		FixedThreadPool
+		CachedThreadPool
+		ScheduledThreadPool
+		SingleThreadPool
+		ForkJoinPool
+	
+	
+
+
+Fork Join Thread
+
+
+
+
+Concurrent HashMap VS Map
+Micro service Saga
+
+		A saga is a sequence of local transactions. Each local transaction updates the database and publishes a message or event to trigger the next local transaction in the saga. If a local transaction fails because it violates a business rule then the saga executes a series of compensating transactions that undo the changes that were made by the preceding local transactions.
+		
+		Here are two ways of coordination sagas:
+
+		Choreography - each local transaction publishes events that trigger local transactions in other services
+		Orchestration - an orchestrator (object) tells the participants what local transactions to execute
+		
+
+JDK/JRE/JVM
+
+
+
+JJS / Nashhorn engine  -> Java JavaScript
+
+MongoDB vs Mongo Atlas ? 
+
+
+
+Late Binding(static binding VS dynamic binding)
+	When type of the object is determined at compiled time(by the compiler), it is known as static binding.
+	When type of the object is determined at run-time, it is known as dynamic binding. 
+		(Inheritance )
+		
+			class Dog extends Animal{  
+			 void eat(){System.out.println("dog is eating...");}  
+			  
+			 public static void main(String args[]){  
+			  Animal a=new Dog();  
+			  a.eat();  
+
+RAD - 
+
+
+heap dump anlaysis  - eclipse memory analyser tool, visvual vm, 
+
+garbage collection option -
+
+		JVM has five types of GC implementations:
+
+			Serial Garbage Collector   -
+			Parallel Garbage Collector
+			CMS Garbage Collector  Concurrent Mark Sweep
+			G1 Garbage Collector   -
+			Z Garbage Collector    - 
+			
+			Java 7 - Parallel GC
+			Java 8 - Parallel GC
+			Java 9 - G1 GC
+			Java 10 - G1 GC
+			Java 11 - G1 GC
+
+Java memory Types 
+
+	Heap
+	
+	
+	 Whenever an object is created in java, it gets stored into heap memory. A garbage collection process runs on heap memory to free up unnecessary space that is garbage collection removes those objects from the heap area that does not have any references.
+	 
+			 Young gen
+			 old gen
+			 perm gen
+			 
+			 
+				Young Generation : It is place where lived for short period and divided into two spaces:
+
+					Eden Space : When object created using new keyword memory allocated on this space.
+					Survivor Space : This is the pool which contains objects which have survived after java garbage collection from Eden space.
+				
+				Old Generation : This pool basically contains tenured and virtual (reserved) space and will be holding those objects which survived after garbage collection from Young Generation.
+
+					Tenured Space: This memory pool contains objects which survived after multiple garbage collection means object which survived after garbage collection from Survivor space.
+				
+				
+				Permanent Generation : This memory pool as name also says contain permanent class metadata and descriptors information so PermGen space always reserved for classes and those that is tied to the classes for example static members.
+	
+	Stack
+	
+	Whenever a Java method is called, a new block is created in java stack memory to hold local or intermediate variables and references to other objects in the method. As soon as the execution of the method gets completed, the block of memory in the stack becomes empty and is used by the next method.
+	
+	
+	
+	Program Counter Register - holds the address of JVM instruction currently being executed for any particular thread.
+	
+	Native Method Stack - The JVM and native libraries use native memory to perform actions that can't be accomplished entirely in Java, such as interacting with the operating system or accessing hardware resources.
+	
+	PermGen
+		PermGen (Permanent Generation) is a special heap space separated from the main memory heap. The JVM keeps track of loaded class metadata in the PermGen. PermGen always has a fixed maximum size.
+	
+	Metaspace
+	Metaspace is a native memory region that stores metadata for classes. As a class is loaded by the JVM, its metadata (i.e. its runtime representation in the JVM) is allocated into the Metaspace. The Metaspace occupancy grows as more and more classes are loaded. It has replaced the older PermGen memory space (java8).
+	
+	
+	What triggers Java garbage collection?
+	
+		There are three major types of events that trigger garbage collection in the heap.
+
+	Minor events: 
+		These occur when the eden space is full and objects are moved to a survivor. A minor event happens within the young area.
+		
+	Mixed events: 
+		These are minor events that reclaim old generation objects.
+		
+	Major events: 
+		These clear space in both the young and old generations, which takes longer than other types of garbage collection events.
+	
+
+Thread Types
+	system thread/demon thread/User thread
+	
+	
+Marker Interface ( difference btw marker interface & functional interface)
+
+		
+
+What is Kafka
+
+https://github.com/anhthii/kafka-notes#paritions-and-segments
+
+Tomcat vs Websphere ?
+	
+	Websphere is designed for enterprise-level applications and offers advanced features for scalability and performance, such as clustering and load balancing & EJB (JMS).
+	
+Hot reloading/How swap
+Memory swap
+Bean factory
+Class loaders in Java
+Class loading sequence
+Double locking in singleton pattern
+Rate limiting - how ? any third party
+
+
+I.D.E.A.L.S principle and the 12 factor app method
+
+How to reduce the start up time of spring boot  ? 
+
+	using Spring native image
+	GraalVM
+	Quarkus
+
+Kafka producing message double the rate of consumer consumption rate in single topic.
+
+	producer = 100 messages/ min
+	consumer = 50 messages/ min
+
+	Ans : parition the topic to 2 and introduce another consumer to consume message. So that 2 X 50 = 100 message/ min
+
+
+mataspace in java 8 ?
+ 
+permgem ?
+
+Mongo DB ID format ? 
+
+ 12 byte - first 4 byte - timestamp, 5 unique random number for host machine, 3 increment counter
+
+
+Interview : 5 - Anto (Architect role)
+
+What are the factors the needs to be considered while developing an application ?
+
+	Explain 12 factors  
+	
+	I. Codebase
+		One codebase tracked in revision control, many deploys
+	II. Dependencies
+		Explicitly declare and isolate dependencies
+	III. Config
+		Store config in the environment
+	IV. Backing services
+		Treat backing services as attached resources
+	V. Build, release, run
+		Strictly separate build and run stages
+	VI. Processes
+		Execute the app as one or more stateless processes
+	VII. Port binding
+		Export services via port binding
+	VIII. Concurrency
+		Scale out via the process model
+	IX. Disposability
+		Maximize robustness with fast startup and graceful shutdown
+	X. Dev/prod parity
+		Keep development, staging, and production as similar as possible
+	XI. Logs
+		Treat logs as event streams
+	XII. Admin processes
+		Run admin/management tasks as one-off processes
+	
+	
+Explain resiliency , scalability , elasticity ?
+
+
+		Resilient : Resiliency patterns are a type of service architecture that help to prevent cascading failures and to preserve functionality in the event of service failure. 
+			
+			Resiliency can be achived by implementing (how to achieve resiliency in micro service ?)
+			
+				circuit breaker
+				exponential back off & retry
+				timeout
+				bulkhead
+				fallback methods
+				
+			Elasticity: 
+			
+			Ability to grow or shrink capacity for CPU, memory, and storage resources to adapt to the changing demands of an organization
+			
+			
+
+what is CSRF ?
+
+
+
+
+What is XSS ?
+	Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user.
+	Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses input from a user within the output it generates without validating or encoding it.
+
+CSRF vs XSS ?
+
+how to achieve observability ?
+		
+		log aggregations
+		using metrics collection
+		distribued tracing
+		sampling ( like X-ray in aws)
+	
+
+what problem SRE is trying to solve ? 
+	Explain SRE. 
+	Tools used for reliability
+	
+	
+What are the 3 pillars of observability most complex?
+Observability requires insight into metrics, traces, and logs - the three pillars.
+
+How correlation ID is used for tracking the issue in production ?
+
+Monitoring is tooling or a technical solution that allows teams to watch and understand the state of their systems. Monitoring is based on gathering predefined sets of metrics or logs.
+
+Observability is tooling or a technical solution that allows teams to actively debug their system. Observability is based on exploring properties and patterns not defined in advance.
+
+
+Microservices Observability Patterns
+1. Distributed Tracing
+2. Health Check API
+3. Log Aggregation
+4. Auditing
+5. Exception Tracking
+6. Application Metrics
+
+
+
+Big O notation 
+
+ O(1) , O(n) , etc
+ 
+ Java memory Managment module.
+ 
+ 
+SSL vs TSL vs mTLS ? 
+
+https://medium.com/double-pointer/ssl-vs-tls-vs-mtls-f5e836fe6b6d
+
+
+mTLS is an extension of TLS but whereas in TLS only the Server presents the certificate issued by a Certificate Authority (CA) in mTLS the Client also presents a client certificate issued by the CA to establish its identity. 
+
+
+
+http vs https
+
+	http enable transmission of data over internet. https uses SSL/TLS to encrypt the data.
+	
+Kafka Authentiction 
+
+Cluster or Multi regional 
+
+Binary search/ sorting of random numbers 
+
+gRPC
+
+oAuth type of Authentication names 
+
+CQRS 
+
+Micro Service saga pattern
+
+SSL termination ? where in Micro service ? 
+
+tools  used for heap dump files ?  
+
+Web container (Tomcat) vs App server (Websphere) ? 
+
+Binary Search 
+
+Volatile keyword in java ?
+
+
+
+
+O(1) - Constant time complexity
+O(n) - Linear time complexity
+O(log n) - Logarithmic time complexity
+O(n^2) - Quadratic time complexity
+
+
+
+BIG O NOTATION	EXAMPLE ALGORITHM
+O(1)  		 A good example of O(1) time is accessing a value with an array index.
+O(log n)	Binary search
+O(n)	Simple search
+O(n * log n)	Quicksort
+O(n2)	Selection sort
+O(n!)	Traveling salesperson
+
+
+https://medium.com/javarevisited/important-java-questions-for-experienced-developer-4e5cfa41acb2
+
+https://javarevisited.blogspot.com/2013/07/how-to-create-thread-pools-in-java-executors-framework-example-tutorial.html#axzz7yFfbVPC3
+
+https://medium.com/spring-boot/frequently-asked-and-most-recurring-spring-boot-questions-in-an-interview-4fd7dd4bd50b
+
+
+Designing an API Rate Limiter (or) How do you implement rate limiting in API ?
+
+What is service mesh ?
+
+Saga patterns in Micro service
+
+Eventuate ?
+
+List of Micro service pattern:
+
+https://stackoverflow.com/questions/50124348/sorted-stream-derived-from-infinite-stream-fails-to-iterate#:~:text=No%2C%20you%20cannot%20sort%20an,a%20capacity%20close%20to%20Integer.
+
+
+equals & hashCode contract
+
+
+
+Cheery picking in BitBucket
+
+Hibernate lazy loading vs eager loading
+Hibernate sequence generation
+Hibernate save vs persist
+iterator vs list iterator
+transient vs volatile
+hibernate many to many
+Used any thread pools ? 
+
+
+what is many to many ? explan with example
+How do you map many to many associations in hibernate ?
+Rank over vs group by and max ?
+
+SELECT department_id, last_name, salary,
+   RANK() OVER (PARTITION BY department_id ORDER BY salary) RANK
+FROM employees WHERE department_id = 60
+ORDER BY RANK, last_name;
+
+java 8 features
+java 8 streams and lambda functinalities
+
+
+How do you review query ?
+
+	Avoid sub query
+	Avoid order by in sub query
+	Include all data filtering in the inner join instead of where clause
+	
+	
+String literals vs String objects in java:
+
+		System.out.println("test" == "test");
+		System.out.println(new String("test") == new String("test"));
+		
+		

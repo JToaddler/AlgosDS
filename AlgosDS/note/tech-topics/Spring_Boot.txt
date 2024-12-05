@@ -1,0 +1,153 @@
+
+
+
+Spring Boot checks for the presence of a META-INF/spring.factories file within your published jar. The file should list your configuration classes under the EnableAutoConfiguration key.
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.mycorp.libx.autoconfigure.LibXAutoConfiguration,\
+com.mycorp.libx.autoconfigure.LibXWebAutoConfiguration
+
+		@Bean(name = "dataSource")
+		@ConditionalOnProperty(
+		  name = "usemysql", 
+		  havingValue = "custom")
+		@ConditionalOnMissingBean
+		public DataSource dataSource2() {
+			DriverManagerDataSource dataSource = new DriverManagerDataSource();
+				
+			dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+			dataSource.setUrl(env.getProperty("mysql.url"));
+			dataSource.setUsername(env.getProperty("mysql.user") != null 
+			  ? env.getProperty("mysql.user") : "");
+			dataSource.setPassword(env.getProperty("mysql.pass") != null 
+			  ? env.getProperty("mysql.pass") : "");
+				
+			return dataSource;
+		}
+
+
+Key dependencies of Spring Boot?
+
+spring-boot-starter-parent
+spring-boot-maven-plugin
+spring-boot-starter-test
+spring-boot-starter-security
+spring-boot-starter-actuator
+Spring-boot-starter-web
+
+
+
+Spring boot actuator Endpoints:  
+
+actuator are  HTTP endpoints allows to see what is happening inside a running application.
+
+
+/Actuator - provides a hypermedia-based discovery page for all the other endpoints
+/autoconfig - displays the auto-configuration report in two groups: positive matches and negative matches.
+/beans - displays all the spring beans used in the application
+/configprops - list all the configuration properties defined by the @ConfigurationProperties beans.
+/docs - documentation for all the Actuator module endpoints, requires spring-boot-actuator-docs dependency in pom.xml
+/dump - to get a thread dump of your application
+/env - exposes all the properties from the Spring's ConfigurableEnvironment interface
+/flyway - provides all the information about your database migration scripts; it's based on the Flyway project for database
+/health - shows the health of the application
+/info - displays the public application info
+/logfile - shows the contents of the log file specified by the logging.file property
+/metrics - Various metrics about the app
+/caches - Check available caches
+
+
+
+How to enable specific actuator endpoints ? 
+
+management.endpoints.web.exposure.include=loggers
+management.endpoint.loggers.enabled=true
+
+Once enabled, you can change the logging level of a particular package by using an HTTP POST request like this
+$ curl -i -X POST 
+          -H 'Content-Type: application/json' 
+          -d '{"configuredLevel": "DEBUG"}'
+http://localhost:8080/actuator/loggers/com.javarevisited.app.management.logging
+
+
+
+
+How to activate spring profiles ? 
+
+java -jar -Dspring.profiles.active=[yourProfileName] target/[yourJar].jar
+
+
+
+what is auto configuration ? 
+
+ Spring Boot auto-configuration helps automatically configure a Spring application based on the dependencies that are present on the classpath.
+ 
+
+
+What are the common annotations ? 
+
+	SpringBootApplication (combination of three annotations - @Configuration, @ComponentScan, and @EnableAutoConfiguration)
+	EnableAutoConfiguration 
+	
+	ContextConfiguration ( specifies how to load the application context while writing a unit test
+	SpringApplicationConfiguration 
+	
+	
+	@ConditionalOnBean which can be used to apply a configuration if the specified bean has been configured
+
+	@ConditionalOnMissingBean, which enables the configuration if the specified bean has not already been configured
+
+	@ConditioanlOnMissingClass This configuration is applied if the specified class is not present on the Classpath
+	
+	@ConditionalOnClass The configuration is applied if the specified class is available on the Classpath
+	
+	@ConditionalOnExpression  - Applied if the given Spring Expression Language (SpEL) expression evaluates to true
+
+	@ConditioanlOnProperty 
+	
+
+	
+	
+What is Spring Boot dependency management?
+
+Spring Boot dependency management is basically used to manage dependencies and configuration automatically without you specifying the version for any of that dependencies.
+
+	
+	
+	Applications that use spring-boot-devtools will automatically restart whenever files on the classpath change. 
+	
+	
+	spring.devtools.restart.trigger-file
+	
+	
+Restart vs Reload
+
+The restart technology provided by Spring Boot works by using two classloaders. Classes that don’t change (for example, those from third-party jars) are loaded into a base classloader. Classes that you’re actively developing are loaded into a restart classloader. When the application is restarted, the restart classloader is thrown away and a new one is created. This approach means that application restarts are typically much faster than “cold starts” since the base classloader is already available and populated.
+
+Hot Swap
+
+ It allows you to update the version of a class while the virtual machine is running, without needing to redeploy the webapp, restart, or otherwise interrupt your debugging session.
+
+
+
+@Component
+public class ServiceAHealthIndicator 
+    implements HealthIndicator {
+
+  private final String message_key = "Service A";
+    
+  @Override
+  public Health health() {
+    if (!isRunningServiceA()) {
+      return Health.down().withDetail(message_key, "Not Available").build();
+    }
+    return Health.up().withDetail(message_key, "Available").build();
+  }
+
+  private Boolean isRunningServiceA() {
+    Boolean isRunning = true;
+    // Logic Skipped
+
+    return isRunning;
+  }
+}

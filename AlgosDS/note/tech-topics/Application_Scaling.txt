@@ -1,0 +1,77 @@
+
+	Horizontal Scaling	- 	 Horizontal scaling means scaling by adding more machines to your pool of resources 
+								A web application or its tiers are decoupled so that demand is spread out among multiple nodes. 
+								
+								Web Server is responsible for UI Client
+								App Server is responsible for API
+								CDN - responsible for delivering the content
+								DataBase - enable data sharding and store the data in different data centers
+								
+							Each node will be deplloyed in small N number machine & load is spread out across all modules.
+	
+	Vertical Scaling	- consist of migrating a web application or individual tiers to nodes with greater resources (increase the system resource - Higer RAM & SSD)
+	
+
+	Using Infrastructure for Scaling
+				
+				Deploy multiple instance of the application in multiple host.
+				
+				Select the right Hosting Topoplogy
+				
+																	 _________ App (Node1)
+																	/ 
+											 __________ Web Server /							
+											/					   \
+										   /						\_________ App (Node1)
+							Load Balancer /
+										  \
+										   \
+											\__________ Web Server
+				
+	
+	Database Scaling
+	
+				1. Sharding (Maintaing the Portion of data in different data center)
+				2. Data Replication n(this is not scaling the app, but for back up purpose)
+				3. Database Indexes - Identify the frequently
+				4. Avoid to many joins & Denormalize the Tables. this would improve the Query Read improvement.
+				
+				
+				Use the CAP theorm to identify the correct DB for the Enterprice Application needs
+						
+						CAP theorm states that Any Distributed DB will offer only 2 of the CAP characteristics. Not all 3. Helps to make the correct trade off
+						
+								CA - Consistent and Partition Tolerant 	(Choose C or A when P is Critical)
+								CP - Consistent and Available			(Choose C or P when A is Critical)
+								AP - Available and Partition Tolerant	 
+						
+						C - Consistency
+						A - Availability (Fault tolerance), enabled by setting up Data Replication in multiple Data center.
+						P - Partition Tolerance
+						
+						Explain Some DB (RDMS, Non Releation DB, BigColumn, Graph Database)
+						
+						
+	Caching/Distributed Caching   - Avoid frequent I/O operation & DB calls. load those resource into in-memory to avoid frequent IO calls.
+	
+	Session Implementation 	- 
+	
+	Parrallel Processing - Have a Pool of thread to do the work in prallel and aggregate the result.
+	
+	Client Side Performance
+	
+				- HTML, CSS, JS file Caching
+				- HTML, CSS, JS File compression
+				- Introduce the Content Delivery Network such as OWCS
+				- Avoid too many JS files. Instead of loading N number of JS file, load one single JS file using minifier/uglifier.
+				
+				This minifier removes whitespace, strips comments, combines files, and optimizes/shortens a few common programming patterns.
+				
+				
+				Minifying is just removing unnecessary white-space and redundant like comments and semicolons. And it can be reversed back when needed.
+
+Uglifying is transforming the code into an "unreadable" form by changing variable names, function names, etc, to hide the original content. Once it is used there's no way to reverse it back.
+				
+				
+
+Above all Circuit Braker Pattern : Set time for lon running process.

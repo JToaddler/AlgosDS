@@ -1,0 +1,142 @@
+JUnit :
+
+
+The afterClass() method executes only once.
+The before() method executes for each test case, but before executing the test case.
+The after() method executes for each test case, but after the execution of test case.
+In between before() and after(), each test case executes.
+
+
+MOCKITO :
+
+		@RunWith(MockitoJUnitRunner.class) or
+		
+		@RunWith(SpringJUnit4ClassRunner.class)
+		@Test
+		public void whenUserIdIsProvided_thenRetrievedNameIsCorrect() {
+			Mockito.when(nameService.getUserName("SomeId")).thenReturn("Mock user name");
+			String testName = userService.getUserName("SomeId");
+			Assert.assertEquals("Mock user name", testName);
+			Mockito.verify(userService, times(1)).getUserName("SomeId");
+		}
+		
+		The @Mock annotation creates a mock implementation for the class it is annotated with.
+		@InjectMocks also creat0es the mock implementation, additionally injects the dependent mocks that are marked with the annotations @Mock into it.
+
+		
+		Use When method to created stub and return OngoingStub.
+		Use ThenReturn to return the object or value from Stub method.
+		
+		Use thenThrow to throw exception from a stub method.
+		doAnswer, doNothing
+		
+		
+		a mock is created from a type and not from an instance whereas a stub wraps an actual instance of the class object.
+
+		
+		Some of the drawbacks or limitations in terms of functionality are:
+
+			Its inability to mock static methods.
+			Constructors, private methods and final classes cannot be mocked.
+			
+			
+		Returning multiple values against consecutive method calls
+		
+				when(mockDatabaseImpl.getGrade(anyInt())).thenReturn("A","B", "C"); //Using comma separated:
+				when(mockDatabaseImpl.getGrade(anyInt())).thenReturn("A").thenReturn("B").thenReturn("C"); // Consecutive thenReturn:
+				doReturn("A").doReturn("B").doReturn("C").when(mockDatabaseImpl).getGrade(anyInt());  // Consecutive doReturn:
+
+Angular :
+
+		KARMA:
+			
+	  * karma - test runner framework
+	
+		Karma is a tool that enables the running of source code (i.e. JavaScript) against real browsers via the CLI. The fact that it runs against real browsers.
+		
+		karma.conf.js
+		
+	
+        module.exports = function (config) {
+				config.set({
+					// base path that will be used to resolve files and exclude
+					basePath: '',
+					// testing framework to use (jasmine/mocha/qunit/...)
+					frameworks: ['jasmine'],
+					// list of files / patterns to load in the browser
+					files: [
+						'node_modules/angular/angular.min.js',
+						'node_modules/angular/angular-monpmcks.js',
+						'controller.js',
+						'controllerSpec.js'
+					],
+					// list of files / patterns to exclude
+					exclude: [],
+					port: 8080,
+					// level of logging
+					// possible values: LOG_DISABLE || LOG_ERROR ||
+					// LOG_WARN || LOG_INFO || LOG_DEBUG
+					logLevel: config.LOG_INFO,
+					// enable / disable watching file and executing tests
+					// whenever any file changes
+					autoWatch: true,
+					browsers: ['Chrome'],
+					singleRun: false
+				});
+			};
+
+
+    * jasmine - testing framework
+
+            describe - Controller ( describe can be nested)
+            
+            steps :
+				beforeAll
+                beforearch
+                afterEach
+				afterAll
+                it
+            
+            Jsmine Matcher
+
+                toEqual
+                toBe
+                toBeTruthy
+                toBeFalsy
+                toBeDefined
+                toBeUndefined
+                toBeNull
+                toContain
+                toMatch
+			
+			
+			it('should return 3 for 1 + 2', function() {
+				document.getElementById('x').value = 1;
+				document.getElementById('y').value = 2;
+				document.getElementById('add').click();
+				expect(document.getElementById('result').innerHTML).toBe('3');
+			});
+			
+			
+			Node JS :  Chai (Assertion framework, Mocha - Test Runner)
+			
+			var capitalize = require("../capitalize");
+			var chai = require("chai");
+			var expect = chai.expect;
+			describe("capitalize", function() {
+				it("capitalizes single words", function() {
+					expect(capitalize("express")).to.equal("Express");
+					expect(capitalize("cats")).to.equal("Cats");
+				});
+			});
+	
+	
+			npm test
+				
+			package.json
+			"scripts": {
+				"test " : "m o c h a "
+			}
+			node_modules/.bin/mocha
+			test/*.js
+			

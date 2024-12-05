@@ -1,0 +1,212 @@
+1. Introduction
+
+2. What is Spring Integration? - Framework for Implementing Enterprise Integration Pattern - EIP.
+
+	According to Enterprise Integration Patterns - message channel is a virtual data pipe that connects a sender to one or more receivers. The message channel decouples the sender and the receivers so the sender does not necessary know who will receive the messages.
+	
+	it completely abstract the connectivity away from sender & receiver.
+
+3. Core concepts of Spring Integration messaging system
+	3.1 Message - Header - metadata info and Payload - The object
+	3.2 Message Channel
+		3.2.1 Point-to-point
+			DirectChannel: Implements SubscribableChannel
+			QueueChannel: Implements PollableChannel
+			ExecutorChannel: Implements SubscribableChannel. Sending is delegated to a TaskExecutor.
+			PriorityChannel: Implements PollableChannel. - Priority Queue
+			RendezvousChannel: Implements PollableChannel. - Queue with zero capacity
+		3.2.2 Publish-subscribe
+			PublishSubscribeChannel: Implements SubscribableChannel.
+			
+				<int:publish-subscribe-channel id="publishSubscribeChannel" apply-sequence="true"/>
+			
+			
+			
+		<int:channel id="executorChannel" datatype="com.apress.prospringintegration.channels.Ticket"> 
+				<int:dispatcher task-executor="performTicketExecutor"/>
+				<int:interceptors>
+						<ref bean="interceptor1"/>
+						<ref bean="interceptor2"/>
+						<ref bean="interceptor3"/>
+				</int:interceptors>
+				<int:priority-queue capacity="50"/>
+		</int:channel>
+			
+	
+	3.3 Message Endpoint
+	
+	Endpoint's primary role is to connect application code to the messaging framework and to do so in a non-invasive manner.
+	
+	
+4. Components
+
+	4.1 Channel Adapters - Connects the application to an external system (unidirectional). - Inbound or Outbound (Unidirectional - FTP, JMS )
+	
+	
+		Gateway: Connects the application to an external system (bidirectional). - Inbound and Outbound.
+			
+		<int-ws:outbound-gateway id="marshallingGateway" request-channel="requestChannel" reply-channel="responseChannel" 
+					uri="http://localhost:8080/spring-ws-tickets/tickets"  	marshaller="marshaller"	unmarshaller="marshaller" message-sender="messageSender" interceptor="myInterceptor" />
+ 
+		<bean id="myInterceptor" class="xpadro.spring.integration.ws.interceptor.MyInterceptor" />
+			
+	4.2 Transformer - Converts the content of a message.
+	
+		HeaderEnricher: It permits to add header values to the message.
+			ObjectToMapTransformer: Converts an Object to a Map, converting its attributes to map values.
+			ObjectToStringTransformer: Converts an Object to a String. It converts it by calling its toString() operation.
+			We can also have custom transformer. <int:transformer ref="" method="">
+			
+				• object-to-string-transformer
+				• payload-serializing-transformer
+				• payload-deserializing-transformer
+				• object-to-map-transformer
+				• map-to-object-transformer
+				• json-to-object-transformer
+				• object-to-json-transformer
+				• payload-type-converting-transformer
+			
+	4.3 Filter - Determines if a message can continue its way to the output channel. <int:filter>
+				
+					<int:filter ref="messageSelectorStockItemFilter" input-channel="marketItemChannel" output-channel="filteredItemsChannel"/>
+					
+					@Component
+					public class MessageSelectorStockItemFilter implements MessageSelector {
+						@Override
+						public boolean accept(Message<?> message) {
+							MarketItem item = (MarketItem) message.getPayload();
+							return (item != null && item.getType().equals("stock"));
+						}
+					}
+			
+	4.4 Router - Decides to which channel the message will be sent.
+				
+				<int:router input-channel="marketItemChannel" ref="marketItemTypeRouter"/>   
+				
+						@Router
+						public String route(MarketItem item) {
+								String channelId = item.getType();
+								return channelId; // there should be corresponding channel channelID = "matchingChannelName" in Sprint Int File.
+						}
+						
+	4.5 Splitter and Aggregator - Splits the message in several parts. Combines several messages into a single one.
+						
+				<int:splitter input-channel="marketDataInputChannel" ref="marketDataSplitter" output-channel="marketDataSplitterChannel"/>
+				<int:service-activator input-channel="marketDataSplitterChannel" output-channel="marketDataAggregatorChannel" ref="marketFieldServiceActivator"/>
+				<int:aggregator input-channel="marketDataAggregatorChannel" output-channel="marketDataOutputChannel" ref="marketDataAggregator"/>
+				<int:service-activator input-channel="marketDataOutputChannel"  ref="marketItemServiceActivator"/>
+			
+	
+	4.8 Message Handler Chain - Used to connect components without the channel.
+	
+					<int:chain input-channel="bridgeChannel">
+							<int:splitter ref="marketDataSplitter"/>
+							<int:service-activator ref="marketFieldServiceActivator"/>
+							<int:aggregator ref="marketDataAggregator"/>
+							<int:service-activator ref="marketItemServiceActivator"/>
+					</int:chain>
+	
+	Service Activator : A service activator is a Spring Integration generic endpoint that handles incoming messages. 
+						A service activator could be a method within a regular Java Object.
+						
+	
+	Adapter : 			Adapters provide the bridge between integration framework and the external systems and services. 
+						Adapters can either be inbound or outbound  (not bi-directional)
+						
+						File System Adapters
+						Database (JDBC) Adapters
+						Web Services Adapters)(refer the above int-ws:outbound-gateway)
+						
+	
+	Consumers : 
+	
+				Event Driven Consumer :
+										process messages when messages are given to it by the channel.
+										
+										
+										example : Any Service Activator connected with a channel.
+																				
+				Polling Consumers : 
+										pull messages from a channel periodically.
+										
+										
+										<int-sftp:inbound-channel-adapter id="ftpInbound" channel="ftpChannel"  session-factory="sftpSessionFactory"
+																filename-regex=".*\.txt$" auto-create-local-directory="true"
+ 																delete-remote-files="false"	remote-directory="." local-directory="file:output">
+											<int:poller fixed-rate="1000"/>
+										</int-sftp:inbound-channel-adapter>
+
+6. Error handling
+
+
+============================================
+
+@ServiceActivator
+@Router
+@Transformer
+@Filter
+@Splitter
+@Aggregator
+@Gateway
+@Header("count") _ used for extracting the header of the Message.
+
+
+
+<int:transformer input-channel="input" output-channel="output" ref="mapper"/>
+
+<int:splitter input-channel="marketDataInputChannel" ref="marketItemTypeRouter" output-channel="marketDataSplitterChannel"/>
+
+<int:gateway id="ticketIssueGateway" default-request-channel="request" default-reply-channel="reply"
+		service-interface="com.apress.prospringintegration.gateways.client.TicketIssuer"/>
+
+@Component
+public class MarketItemTypeRouter {
+
+	@ServiceActivator
+	public void registerBond(MarketItem item) {
+	System.out.println("Registering bond: " + item.getDescription());
+	}
+
+
+	@Router
+	public String route(MarketItem item) {
+	String channelId = item.getType();
+	return channelId;
+	}
+	
+	@Transformer
+	public Customer map(Map<String, String> message) {
+	Customer customer = new Customer();
+	customer.setFirstName(message.get("firstName"));
+	customer.setLastName(message.get("lastName"));
+	customer.setAddress(message.get("address"));
+	customer.setCity(message.get("city"));
+	customer.setState(message.get("state"));
+	customer.setZip(message.get("zip"));
+	return customer;
+	}
+	
+	@Splitter
+	public Collection<Field> splitItem(MarketItem marketItem) {
+	List<Field> messages = new ArrayList<Field>();
+	Field field = new Field(FieldDescriptor.SYMBOL, marketItem.getSymbol());
+	messages.add(field);
+
+	return messages;
+	}
+	
+	
+	@Filter
+	public boolean acceptViaHeader(@Header("ITEM_TYPE") String itemType) {
+		return itemType.equals("stock");
+	}
+}
+
+
+
+public interface TicketIssuer {
+
+	@Gateway(replyChannel = "ticketReplies", requestChannel = "ticketRequests")
+	public Ticket issueTicket(long ticketId);
+	
+}

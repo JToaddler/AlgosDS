@@ -1,0 +1,304 @@
+Architecture :				Data access/ Integration 						~ JDBC 						~ ORM						~ OXM 						~ JMS 						~ Transaction				web								~ web						~ servlet						~ portlet						~ struts				Core							~ Bean 						~ core 						~ context 						~ EL				Test				AOP - Aspects - instrumentationSpring IOC or DI ::
+		IoC is also known as dependency injection (DI). It is a process whereby objects define their dependencies, that is, 
+		the other objects they work with,only through constructor arguments, arguments to a factory method, 
+		or properties that are set on the object instance after it is constructed 
+		or returned from a factory method. The container then injects those dependencies when it creates the bean. 
+		
+		This process is fundamentally the inverse, hence the name Inversion of Control (IoC), of the bean itself controlling the instantiation 
+		or location of its dependencies by using direct construction of classes, or a mechanism such as the Service Locator pattern.
+		
+LifeCycle Call Back :: Bean factory is responsible for creating bean. Implemting 
+		1. BeanNameAware
+		2. BeanFactoryAware
+		3. ApplicationContextAware
+		4. BeanPostProcessor - postProcessBeforeInitialization
+		5. @PostConstruct
+		6. InitializingBean - afterPropertiesSet
+		7. Custom Init
+		8. BeanPostProcessor - postProcessAfterInitialization
+		9. @PreDestroy
+	   10. DisposableBean    - destroy() 
+	   11. Custom destroy
+		
+Bean factory implementations should support the standard bean lifecycle interfaces as far as possible. The full set of initialization methods 
+and their standard order is:
+
+1. BeanNameAware's setBeanName
+2. BeanClassLoaderAware's setBeanClassLoader
+3. BeanFactoryAware's setBeanFactory
+4. ResourceLoaderAware's setResourceLoader (only applicable when running in an application context)
+5. ApplicationEventPublisherAware's setApplicationEventPublisher (only applicable when running in an application context)
+6. MessageSourceAware's setMessageSource (only applicable when running in an application context)
+7. ApplicationContextAware's setApplicationContext (only applicable when running in an application context)
+8. ServletContextAware's setServletContext (only applicable when running in a web application context)
+9. postProcessBeforeInitialization methods of BeanPostProcessors
+10. InitializingBean's afterPropertiesSet
+11. a custom init-method definition
+12. postProcessAfterInitialization methods of BeanPostProcessors 
+
+On shutdown of a bean factory, the following lifecycle methods apply:
+1. DisposableBean's destroy
+2. a custom destroy-method definition
+
+SCOPE OF BEAN ::
+	A.SINGLETON - (Default) Scopes a single bean definition to a single object instance per Spring IoC container.
+	B.PROTOTYPE - Scopes a single bean definition to any number of object instances.
+	C. REQUEST  - Scopes a single bean definition to the lifecycle of a single HTTP request; that is,				  each HTTP request has its own instance of a bean created off the back of a single bean definition.				  Only valid in the context of a web-aware Spring ApplicationContext.
+	D. SESSION  - Scopes a single bean definition to the lifecycle of an HTTP Session. 				  Only valid in the context of a web-aware Spring ApplicationContext.
+	F. GLOBAL 		
+	  SESSION   - Scopes a single bean definition to the lifecycle of a global HTTP Session.				  Typically only valid when used in a portlet context. Only valid in the context of a web-aware Spring ApplicationContext.
+	G.Thread 				- scoped    - A thread scope is available, but is not registered by default.					H. StepScope - bean will be created and for evert step execution and will be destoryed upon step execution completion.
+BEAN INHERITANCE -A child bean definition inherits constructor argument values, property values, and method overrides from the parent, with the option to add new values. Any initialization method, destroy method, and/or static factory method settings that you specify will override the corresponding parent settings.The remaining settings are always taken from the child definition: depends on, autowire mode, dependency check, singleton, scope, lazy init.
+		    Default abstract="false". If parent Bean is abstract , Parent should not be used in Code.Its just for Child Definition Purpose
+			<bean id="parent"  class= "com.test.rdp.inheritance.Parent">
+				<property name="name" value="Prent Name" />				<property name="age" value="48"></property>			</bean>			
+			<bean id="child" class="com.test.rdp.inheritance.Child" parent="parent">				<property name="age" value="21"></property>			</bean>
+
+			Parent Bean with out Class : leaving class will make abstract true. Otherwise it will error out.					<bean id="parent"   abstract="true">				<property name="name" value="Prent Name" />
+				<property name="age" value="48"></property>
+			</bean>
+			<bean id="child" class="com.test.rdp.inheritance.Child" parent="parent">				<property name="age" value="21"></property>			</bean>
+NameSpaces :			
+p:, c: util:
+			xmlns:context="http://www.springframework.org/schema/p"			xmlns:p="http://www.springframework.org/schema/p"			xmlns:c="http://www.springframework.org/schema/c"			xmlns:util="http://www.springframework.org/schema/util"  						context: The context namespace provides support for configuring Spring’s	ApplicationContext.
+			p: The p namespace provides a simpler DI configuration for Setter Injection.
+			c: New in Spring 3.1, the c namespace provides a more simple DI configuration	for Constructor Injection.
+			util: The util namespace provides some useful utilities for DI configuration.								(util:list creates a bean of type java.util.List)			
+Bean Creation :
+	Simple Bean with Prop & Alias :				<bean id="dog" name="pet,watchDog;beagle pug" class="com.test.rdp.beanCreat.Dog"					p:breedName="canine" p:name="DOG">
+			</bean>
+			<alias name="dog" alias="guardDog" />primary= "false"autowire-candidate="false"autowire=			
+Name is used for alias. allowed character are : , ; and white space. Alias can be created from an bean name as well as another alias.Id has higher priority than Name. If id & name tag is not used, then it will be bean name will be created from qualified name#0(xx.yy.ZZZZ#0,xx.yy.ZZZZ#1)number will be given based on the bean definition order.	Constructor Based Injtection :
+							Argument resolution - index based 															<bean id="beagle" class="com.test.rdp.beanCreat.Beagle">									<constructor-arg index="0" value="1indexDog" />									<constructor-arg index="1" value="2indexOwnerName" />								</bean>
+							Argument resolution - index based
+							<bean id="proxyBeagle" class="com.test.rdp.beanCreat.Beagle">								<constructor-arg name="name" value="Name-Value Dog" />								<constructor-arg index="1" value="Name Value - OwnerName" />							</bean>
+															Argument resolution - Name and Index based
+								<bean id="exampleBean" class="examples.ExampleBean">									<constructor-arg type="int" value="7500000"/>									<constructor-arg type="java.lang.String" value="42"/>								</bean>
+	with static factory method:
+								<bean id="clientService" class="examples.ClientService" factory-method="createInstance"/>
+								public class ClientService {									private static ClientService clientService = new ClientService();									private ClientService() {}									public static ClientService createInstance() {										return clientService;									}								}	with instance factory method:
+								<!-- the factory bean, which contains a method called createInstance() -->								<bean id="serviceLocator" class="examples.DefaultServiceLocator">									<!-- inject any dependencies required by this locator bean -->								</bean>
+								<!-- the bean to be created via the factory bean -->								<bean id="clientService" factory-bean="serviceLocator" factory-method="createClientServiceInstance"/>Inner Bean ::
+				A <bean/> element inside the <property/> or <constructor-arg/> elements defines a so-called inner bean.					<bean id="outer" class="...">
+				<!-- instead of using a reference to a target bean, simply define the target bean inline -->					<property name="target">						  <bean class="com.example.Person"> <!-- this is the inner bean -->								<property name="name" value="Fiona Apple"/>								<property name="age" value="25"/>						  </bean>					</property>				</bean							Note :
+					does not require a defined id or name. Container will ignore this name & scope 					always anonymous and they are always scoped as prototypes					can't be used anywhere or can't be referenced by any other beans					
+Collections ::
+
+			<list> 	- Wiring a list of values, allowing duplicates			<set> 	- Wiring a set of values, ensuring no duplicates			<map> 	- Wiring a collection of name-value pairs where name and value can be of any type			<props> - Wiring a collection of name-value pairs where the name and value must be Strings
+			Example -					<bean id="moreComplexObject" class="example.ComplexObject">
+					<!-- results in a setAdminEmails(java.util.Properties) call -->					<property name="adminEmails">						<props>							<prop key="administrator">administrator@example.org</prop>							<prop key="support">support@example.org</prop>							<prop key="development">development@example.org</prop>						</props>					</property>
+					
+					<!-- results in a setSomeList(java.util.List) call -->					<property name="someList">
+					<list>							<value>a list element followed by a reference</value>							<ref bean="myDataSource" />						</list>					</property>
+					<!-- results in a setSomeMap(java.util.Map) call -->					<property name="someMap">						<map>							<entry key="an entry" value="just some string"/>							<entry key ="a ref" value-ref="myDataSource"/>						</map>					</property>					
+					<!-- results in a setSomeSet(java.util.Set) call -->
+				<property name="someSet">					<set>							<value>just some string</value>							<ref bean="myDataSource" />						</set>					</property>				</bean>								The value of a map key or value, or a set value, can also again be any of the following elements:				bean | ref | idref | list | set | map | props | value | null																						NULL & Empty String :
+				<bean class="ExampleBean">					<property name="email" value=""/> <!-- This handle empty string -->					<property name= "fNaame">						<null/>					</property>				</bean>
+		Merging collection :							<bean id="parent" abstract="true" class="example.ComplexObject">
+								<property name="adminEmails">
+									<props>
+										<prop key="administrator">administrator@example.com</prop>
+										<prop key="support">support@example.com</prop>
+									</props>
+								</property>
+							</bean>
+							<bean id="child" parent="parent">
+								<property name="adminEmails">
+									<!-- the merge is specified on the child collection definition -->
+									<props merge="true">
+										<prop key="sales">sales@example.com</prop>
+										<prop key="support">support@example.co.uk</prop>
+									</props>
+								</property>
+							</bean>						
+SpEL ::
+			#{} is clue to spring that the statement has SpEL. it can be combined with non-SpEL.
+			Primitive types 	:   
+									<property name="count" value="#{5}"/>      --> int					
+									<property name="enabled" value="#{false}"/>   --> boolean									<property name="message" value="The value is #{5}"/>
+									<property name="frequency" value="#{89.7}"/>												Scientific notion 	:									<property name="capacity" value="#{1e4}"/>  --> capacity  =10000.0
+			String literal 		: 									<property name="name" value="#{'Chuck'}"/>													OR									<property name="name" value="#{"Chuck"}"/>
+		Other bean referencing :
+									<property name="instrument" value="#{saxophone}"/>									is equal to 									<property name="instrument" ref="saxophone"/>										Other bean prop values :								<bean id="carl" class="com.springinaction.springidol.Instrumentalist">										<property name="song" value="#{kenny.song}" />								</bean>
+		Calling method on a bean :
+									<property name="song" value="#{songSelector.selectSong()}"/>																		checking for null  :: IMPORTANT																		<property name="song" value="#{songSelector.selectSong()?.toUpperCase()}"/>
+		Conditional evaluation:
+									<property name="instrument" value="#{songSelector.selectSong()=='Jingle Bells'?piano:saxophone}"/>									<property name="song" value="#{kenny.song != null ? kenny.song : 'Greensleeves'}"/>								
+									is equal to									
+									<property name="song" value="#{kenny.song != null ? kenny.song : 'Greensleeves'}"/>				Accessing Static Methods & Constants :											<property name="multiplier" value="#{T(java.lang.Math).PI}"/>																		<property name="randomNumber" value="#{T(java.lang.Math).random()}"/>								Arithmetic  operation : 																		Arithmetic 			+, -, *, /, %, ^									=====================================									<property name="adjustedAmount" value="#{counter.total + 42}"/>									<property name="circumference" value="#{2 * T(java.lang.Math).PI * circle.radius}"/>									<property name="average" value="#{counter.total / counter.count}"/>																		power of  () <property name="area" value="#{T(java.lang.Math).PI * circle.radius ^ 2}"/>																		String concatenation : <property name="fullName" value="#{performer.firstName + ' ' + performer.lastName}"/>																											Relational 			<, >, ==, <=, >=, lt,gt, eq, le, ge									=====================================																															Logical 			and, or, not, |									=====================================									<property name="outOfStock" value="#{not product.available}"/>									or									<property name="outOfStock" value="#{!product.available}"/>																		Conditional 		?: (ternary), ?: (Elvis)									=====================================									<property name="song" value="#{kenny.song != null ? kenny.song : 'Greensleeves'}"/>																		Regular expression 	matches									=====================================									<property name="validEmail" value= "#{admin.email matches '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com'}"/>											Usage in Collection   : 		
+									<util:list id="cities">											<bean class="com.habuma.spel.cities.City" p:name="Chicago" p:state="IL" p:population="2853114"/>											<bean class="com.habuma.spel.cities.City" p:name="Atlanta" p:state="GA" p:population="537958"/>									</util:list>
+
+									<property name="chosenCity" value="#{cities[1]}"/>										ACCESSING COLLECTION MEMBERS																<util:properties id="settings" location="classpath:settings.properties"/>										<property name="accessToken" value="#{settings['twitter.accessToken']}"/>																										<property name="homePath" value="#{systemEnvironment['HOME']}"/>								<property name="homePath" value="#{systemProperties['application.home']}"/>																								SELECTING COLLECTION MEMBERS (.?)  => <property name="bigCities" value="#{cities.?[population gt 100000]}"/>																SELECTING FIRST MEMBERS from collection (.^[] )  => <property name="aBigCity" value="#{cities.^[population gt 100000]}"/>																SELECTING LAST MEMBERS from collection (.$[] ) => <property name="aBigCity" value="#{cities.$[population gt 100000]}"/>												Collection projection : .![] used to select list of prop from List<Object> 																		Annotation Based config :									@Value("#{ systemProperties['user.region'] }")
+Autowiring :
+
+			byName - Autowiring by property name.					 For example, if a bean definition is set to autowire by name, and it contains a master property (that is, 					 it has a setMaster(..) method), Spring looks for a bean definition named master, and uses it to set the property.					without auto wiring  :-						<bean id="instrument" class="com.springinaction.springidol.Saxophone" />									<bean id="kenny2" class="com.springinaction.springidol.Instrumentalist">							<property name="song" value="Jingle Bells" />							<property name="instrument" ref="saxophone" />						</bean>						after auto wiring :
+						<bean id="kenny" class="com.springinaction.springidol.Instrumentalist" autowire="byName">							<property name="song" value="Jingle Bells" />						</bean>
+ 			byType - Allows a property to be autowired if exactly one bean of the property type exists in the container. 
+ 					 If more than one exists, a fatal exception is thrown
+						<bean id="kenny2" class="com.springinaction.springidol.Instrumentalist">							<property name="song" value="Jingle Bells" />							<property name="instrument" ref="saxophone" />						</bean>
+						after auto wiring :
+						<bean id="kenny" class="com.springinaction.springidol.Instrumentalist" autowire="byType">							<property name="song" value="Jingle Bells" />						</bean>
+						to avoid BeanCreation exception by byType , use primary = "false" or autowire-candidate="false"
+						<bean id="saxophone" class="com.springinaction.springidol.Saxophone"  primary="false" />
+						<bean id="saxophone" class="com.springinaction.springidol.Saxophone" autowire-candidate="false" />
+		constructor - similar to byType 
+		
+		autodetect  -  1. autowire by constructor
+					   2. autowire by byType	Exceptional case : mixing autowiring  & explicit wiring. This type of mixing can be possible only for property. Not for Constructor							<bean id="kenny" class="com.springinaction.springidol.Instrumentalist" autowire="byType">
+							<property name="song" value="Jingle Bells" />
+							<property name="instrument" ref="saxophone" />
+						</bean>
+						here property instrument will be overridden by explicit wiring.		autowire byName will autowire a bean even when autowire-candidate='false'.				Java Configuration :						stereo type annotation									@Component					@Service					@Controller					@Repository					Any annotation annotated with @Component.				<context:component-scan base-package="com.springinaction.springidol">						<context:include-filter type="assignable" expression="com.springinaction.springidol.Instrument"/>						<context:excludefilter/>				</context:component-scan>										annotation	org.example.SomeAnnotation			An annotation to be present at the type level in target components.				assignable	org.example.SomeClass				A class (or interface) that the target components are assignable to (extend/implement).				aspectj		org.example..*Service+				An AspectJ type expression to be matched by the target components.				regex		org\.example\.Default.*				A regex expression to be matched by the target components class names.				custom		org.example.MyTypeFilter			A custom implementation of the org.springframework.core.type .TypeFilter interface.															@Configuration				@Bean				@DependsOn				@Primary				@Lazy				@Import				@ImportResource				@Value													Java based config 										@Configuration					public class AppConfig {										  @Scope("prototype")					  @Bean (name = "myFoo", initMethod = "init" ,destroyMethod = "cleanup")					  public MyService myService() {						  return new MyServiceImpl();						  					  }					  					  public void cleanup() {						  // destruction logic					  }					}									public static void main(String[] args) {					  AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();					  ctx.register(AppConfig.class, OtherConfig.class);					  ctx.scan("com.acme");					  ctx.refresh();					  MyService myService = ctx.getBean(MyService.class);					  myService.doStuff();					}															import config from another class					@Configuration					public class ConfigA {					  public @Bean A a() { return new A(); }					}					@Configuration					@Import(ConfigA.class)					public class ConfigB {					  @Bean (name = { "dataSource", "subsystemA-dataSource", "subsystemB-dataSource" })					  public B b() { return new B(); }					}														
+SPRING JDBC :	ParamerterizedRowMapper 		package hierarchy : 						org.springframework.jdbc.core															- contains  JdbcTemplate class and its various callback interfaces																sub package org.springframework.jdbc.core.simple contains 																SimpleJdbcTemplate class and the related SimpleJdbcInsert and SimpleJdbcCall 																org.springframework.jdbc.core.namedparam contains the NamedParameterJdbcTemplate						org.springframework.jdbc.datasource															- datasource												org.springframework.jdbc.object     - contains classes that represent RDBMS queries, updates, and stored procedures as thread safe,															  reusable objects												org.springframework.jdbc.support    -   SQLException translation functionality and some utility classes						
+			 Data sources that are defined by a JDBC driver
+					<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+						<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+						<property name="url" value="jdbc:hsqldb:hsql://localhost/spitter/spitter" />
+						<property name="username" value="sa" />
+						<property name="password" value="" />
+					</bean>
+			 Data sources that are looked up by JNDI
+			
+					<jee:jndi-lookup id="dataSource" jndi-name="/jdbc/SpitterDS" resource-ref="true" />					o access it within Spring, simply use Spring's JndiObjectFactoryBean / <jee:jndi-lookup> fetch the factory by its JNDI name.					
+
+			 Data sources that pool connections
+					
+					<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+						<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+						<property name="url" value="jdbc:hsqldb:hsql://localhost/spitter/spitter" />
+						<property name="username" value="sa" />
+						<property name="password" value="" />
+						<property name="initialSize" value="5" />
+						<property name="maxActive" value="10" />
+					</bean>
+
+
+
+Transaction Management :		Spring provides three ways to declare transactional boundaries.						Propagation      	-  behavior defines the boundaries of the transaction		ISOLATION LEVEL   	-  defines how much a transaction may be impacted by the activities of other concurrent transactions.		READ-ONLY         	- 		TRANSACTION TIMEOUT - 		ROLLBACK RULES      - 		
+			ACID 
+					Atomic 		- multi insert/update/delete with single commit
+					Consistent 	- 									strong consistency : synchronous replication to all replicas in cluster ( slow if there are more number of repliacas and stand by)									eventual consistency : Asynchronous replication.
+					Isolated 	- lock rows for update in multi sessions.  The degree to which this transaction is isolated from the work of other transactions
+					Durable		- 
+
+												Platform TXN Manager 
+														|
+				________________________________________|___________________________________________
+				|							|							|							|
+		DataSource						Hibernate 						JPA							JTA
+		transaction						TXN Mng							TXN Mng						TXN Mn
+		  manager
+			
+			
+		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+				<property name="dataSource" ref="dataSource"/>
+		</bean>
+		
+		Programmatic TXN Management :
+		
+		1.PlatformTransactionManager
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		// explicitly setting the transaction name is something that can only be done programmatically
+		def.setName("SomeTxName");
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+		TransactionStatus status = txManager.getTransaction(def);
+		try {
+		// execute your business logic here
+		}
+		catch (MyException ex) {
+		txManager.rollback(status);
+		throw ex;
+		}
+		txManager.commit(status);
+		
+		2. TXN Template
+					
+					public void saveSpittle(final Spittle spittle) 
+					{
+					
+						txTemplate.execute(new TransactionCallback<Void>() 
+						{
+						
+							public Void doInTransaction(TransactionStatus txStatus) 
+							{
+								try 
+								{
+									spitterDao.saveSpittle(spittle);
+								} 
+								catch (RuntimeException e) 
+								{
+									txStatus.setRollbackOnly();
+									throw e;
+								}
+								return null;
+							}
+						});
+					}
+		<bean id="spitterService" class="com.habuma.spitter.service.SpitterServiceImpl">
+			<property name="transactionTemplate ">
+				<bean class="org.springframework.transaction.support.TransactionTemplate">
+					<property name="transactionManager" ref="transactionManager" />
+				</bean>
+			</property>
+		</bean>
+		
+		
+		Declarative TXN Management :	
+				Propagation behaviour
+										PROPAGATION_MANDATORY		- must run in txn else exception will be thrown
+										PROPAGATION_REQUIRED		- current method runs within existing txn else create new txn
+										PROPAGATION_NESTED			- similer to PROPG_REQ, but will create nested TXN within another txn and rollback the nested txn alone
+										PROPAGATION_NEVER			
+										PROPAGATION_NOT_SUPPORTED
+										PROPAGATION_REQUIRES_NEW
+										PROPAGATION_SUPPORTS
+				
+				
+				Isolation level 
+										ISOLATION_DEFAULT
+										ISOLATION_READ_UNCOMMITTED
+										ISOLATION_READ_COMMITTED
+										ISOLATION_REPEATABLE_READ 
+										ISOLATION_SERIALIZABLE
+										
+				
+				@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackFor=Exception.class)
+				public void transferFundsException(final Account fromAccount,
+				final Account toAccount, final Double transferAmount) throws Exception {
+				}
+
+				<tx:annotation-driven transaction-manager="txManager" />
+	NOTES ON GLOBAL TNX 							-- managed by app server using JTA							-- txn acorss multiple resource (differenent JNDI or resource or different DB with single commit)	LOCAL TXN 											-- managed by JNDI or resource thr codee & not by app server							-- txn within the single DB or resourcePropertyPlaceholderConfigurer :   to externalize property values from a bean definition in a separate file using the standard Java Properties formatnever (0): Never check system propertiesfallback (1): Check system properties if not resolvable in the specified properties files. This is the default.override (2): Check system properties first, before trying the specified properties files. This allows system properties to override any other property source.				<context:property-placeholder location="file:./dx-config.properties" />				or				<context:property-placeholder location="file:///D:/WorkSpace/EXE-TEST-ENV/DX/dx-config.properties" />
+				or				<context:property-placeholder location="classpath:com/foo/jdbc.properties"/>
+				<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">					<property name="locations" value="classpath:com/foo/jdbc.properties"/>				</bean>								
+				or 				<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">					<property name="locations">						<value>classpath:com/foo/strategy.properties</value>					</property>			</bean>
+				or
+				<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">					<property name="locations">						<list>							<value>classpath:dao.properties</value>							<value>classpath:services.properties</value>							<value>classpath:user.properties</value>						</list>					</property> 					<property name="ignoreUnresolvablePlaceholders" value="true"/>				</bean>			if the prop file is optional use 
+			<context:property-placeholder ignore-resource-not-found="true" location="classpath:your.properties" ... />							or				<property name="ignoreResourceNotFound" value="true"/>					if the prop is optional use 
+				<property name="ignoreUnresolvablePlaceholders" value="true" />						 or		 
+				 <context:property-placeholder location="classpath:dao.properties,classpath:services.properties,classpath:user.properties" 					ignore-unresolvable="true"/>					
+ResourceBundleMessageSource : provides internationalization (i18n) functionality
+
+# in format.propertiesmessage=Alligators rock!# in exceptions.propertiesargument.required=The '{0}' argument is required.
+					<beans>						<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">														<property name="basenames">								<list>									<!-- all these are .properties files in classpath									<value>format</value>									<value>exceptions</value>									<value>windows</value>								</list>							</property>						</bean>					</beans>										MessageSource resources = new ClassPathXmlApplicationContext("beans.xml");
+					String message = resources.getMessage("argument.required",
+						new Object [] {"userDao"}, "Required", Locale.UK);
+Spring Events :
+
+				ContextStartedEvent 		-- called on 	start()		
+				ContextStoppedEvent			-- called on 	stop()
+				ContextRefreshedEvent		-- called on 	refresh()
+				ContextClosedEvent			-- called on 	close()
+				RequestHandledEvent			-- called on 	
+
+				CustomEvent :	
+				public class MessageEvent extends ApplicationEvent {					private String msg;					public MessageEvent(Object source, String msg) {					super(source);					this.msg = msg;					}
+					public String getMessage() {					return msg;					}				}
+				Custom Listener				
+				public class MessageEventListener implements ApplicationListener<MessageEvent> {					public void onApplicationEvent(MessageEvent event) 					{						MessageEvent msgEvt = (MessageEvent) event;						System.out.println("Received: " + msgEvt.getMessage());					}				}								Triggering events :				
+				public class Publisher implements ApplicationContextAware				{					private ApplicationContext ctx;			
+					public static void main(String[] args) 
+					{
+						ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:events/events.xml");						Publisher pub = (Publisher) ctx.getBean("publisher");						pub.publish("Hello World!");						pub.publish("The quick brown fox jumped over the lazy dog");					}										public void setApplicationContext(ApplicationContext applicationContext) throws BeansException 					{						this.ctx = applicationContext;					}						public void publish(String message) 					{						ctx.publishEvent(new MessageEvent(this, message));					}				}									AOP :		Advising aspects with other aspects?In Spring AOP, it is not possible to have aspects themselves be the target of advice from other aspects. The @Aspect annotation on a class marks it as an aspect, and hence excludes it from auto-proxying.			Aspect : An aspect is a class that implements enterprise application concerns that cut across multiple classes, 						Join Point: A join point is the specific point in the application such as method execution, exception handling, changing object variable values etc.						In spring its fixed always - methods.						Pointcut: Pointcut are expressions that is matched with join points to determine whether advice needs to be executed or not.						Advice: Advices are actions taken for a particular join point.						ADVICE  : defines both the what and the when of an aspect							Spring aspects can work with five kinds of advice:			Before advice: Advice that executes before a join point, but which does not have the ability to prevent execution flow proceeding to the join point (unless it throws an exception).After returning advice: Advice to be executed after a join point completes normally: for example, if a method returns without throwing an exception.After throwing advice: Advice to be executed if a method exits by throwing an exception.After (finally) advice: Advice to be executed regardless of the means by which a join point exits (normal or exceptional return).Around advice: Advice that surrounds a join point such as a method invocation. This is the most powerful kind of advice. Around advice can perform custom behavior before and after the method invocation. It is also responsible for choosing whether to proceed to the join point or to shortcut the advised method execution by returning its own return value or throwing an exception.							JOIN POINT 						point in the execution of the application where an aspect can be plugged in. (In simple words, thing which needs to be intercept method or fields )						In Spring AOP, a join point always represents a method execution.												(Aspactj provide , method level & field level)									POINTCUTS												If advice defines the what and when of aspects, then pointcuts define the WHERE. (class, package to included )												you specify these pointcuts using explicit class and method names or through						regular expressions that define matching class and method name patterns.															execution(* com.springinaction.springidol.Instrument.play()) and bean(eddie)													<aop:config>				<aop:aspect ref="audience">					<aop:pointcut id="performance" expression= "execution(* com.springinaction.springidol.Performer.perform(..))"/>					<aop:before pointcut-ref="performance" method="takeSeats" />					<aop:before pointcut-ref="performance" method="turnOffCellPhones" />					<aop:after-returning pointcut-ref="performance" method="applaud" />					<aop:after-throwing pointcut-ref="performance" method="demandRefund" />				</aop:aspect>			</aop:config>															@Aspect			public class Audience 			{				@Pointcut("execution(* com.springinaction.springidol.Performer.perform(..))")				public void performance() 				{								}								@Before("performance()")				public void takeSeats() 				{					System.out.println("The audience is taking their seats.");				}								@Before("performance()")				public void turnOffCellPhones() 				{					System.out.println("The audience is turning off their cellphones");				}								@AfterReturning("performance()")				public void applaud() 				{					System.out.println("CLAP CLAP CLAP CLAP CLAP");				}								@AfterThrowing("performance()")				public void demandRefund() 				{					System.out.println("Boo! We want our money back!");				}			}
