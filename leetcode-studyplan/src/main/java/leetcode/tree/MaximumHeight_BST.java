@@ -38,4 +38,27 @@ public class MaximumHeight_BST {
 		return depth;
 	}
 
+	/**
+	 * Time complexity: we visit each node exactly once, thus the time complexity is
+	 * O(N), where N is the number of nodes.
+	 * 
+	 * 
+	 * 
+	 * Space complexity: in the worst case, the tree is completely unbalanced, e.g.
+	 * each node has only left child node, the recursion call would occur N times
+	 * (the height of the tree), therefore the storage to keep the call stack would
+	 * be O(N). But in the best case (the tree is completely balanced), the height
+	 * of the tree would be log(N). Therefore, the space complexity in this case
+	 * would be O(log(N)).
+	 */
+	public int maxDepth_recursion(TreeNode root) {
+		if (root == null) {
+			return 0;
+		} else {
+			int leftHeight = maxDepth(root.left);
+			int rightHeight = maxDepth(root.right);
+			return Math.max(leftHeight, rightHeight) + 1;
+		}
+	}
+
 }
