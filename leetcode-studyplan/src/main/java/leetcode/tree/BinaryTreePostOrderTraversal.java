@@ -14,7 +14,7 @@ import leetcode.model.TreeNode;
 public class BinaryTreePostOrderTraversal {
 
 	public static void main(String[] args) {
-
+		
 	}
 	
 	
