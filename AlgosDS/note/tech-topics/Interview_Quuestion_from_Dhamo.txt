@@ -270,7 +270,7 @@ Thread Types
 	system thread/demon thread/User thread
 	
 	
-Marker Interface ( difference btw marker interface & functional interface)
+Marker Interface (difference btw marker interface & functional interface)
 
 		
 

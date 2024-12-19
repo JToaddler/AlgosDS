@@ -1,12 +1,8 @@
 package leetcode.tree;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Stack;
-
-import javax.management.Query;
 
 import leetcode.model.TreeNode;
 
@@ -90,11 +86,11 @@ public class BinaryTreeInorderTraversal {
 	}
 
 	public void visit(TreeNode node, List<Integer> res) {
-		if (node != null) {
-			visit(node.left, res);
-			res.add(node.val);
-			visit(node.right, res);
-		}
+		if (node == null)
+			return;
+		visit(node.left, res);
+		res.add(node.val);
+		visit(node.right, res);
 	}
 
 }

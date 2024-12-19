@@ -21,6 +21,10 @@ public class LargestRectangle {
 
 		int[][] matrix = generateGrid(6, 6);
 		System.out.println("Largest Rectangle Area :" + findLargestRectangle(matrix));
+
+		char intC = '1';
+		int x = intC;
+		System.out.println(x);
 	}
 
 	public static int findLargestRectangle(int[][] matrix) {
@@ -49,7 +53,7 @@ public class LargestRectangle {
 		for (int i = 0; i < matrix[row].length; i++) {
 			if (matrix[row][i] == 1) {
 				heights[i] = heights[i] + 1;
-			}else {
+			} else {
 				heights[i] = 0;
 			}
 		}
@@ -90,6 +94,7 @@ public class LargestRectangle {
 			}
 		}
 		printArray(array);
+		System.out.println(array[0]);
 		return array;
 	}
 
