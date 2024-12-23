@@ -35,10 +35,16 @@ public class SearchBST {
 	 * SC : O(1)
 	 */
 	public TreeNode searchBST_Iteration(TreeNode root, int val) {
-		while (root != null && root.val != val) {
-			root = root.val > val ? root.left : root.right;
+		TreeNode cur = root;
+		while (cur != null) {
+			if (cur.val == val)
+				return cur;
+			else if (cur.val > val)
+				cur = cur.left;
+			else
+				cur = cur.right;
 		}
-		return root;
+		return null;
 	}
 
 	/**

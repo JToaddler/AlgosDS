@@ -15,7 +15,7 @@ import leetcode.model.TreeNode;
  * 
  */
 public class Valid_BST {
-	
+
 	Integer prev = null;
 
 	public boolean isValidBST(TreeNode root) {
@@ -37,22 +37,21 @@ public class Valid_BST {
 		}
 		return true;
 	}
-	
+
 	public boolean isValidBST_recursion(TreeNode root) {
-		if(root == null)
+		if (root == null)
 			return true;
-		
+
 		boolean result = isValidBST_recursion(root.left);
-		if(!result) {
+		if (!result) {
 			return false;
 		}
-		
-		if(prev!= null && prev >= root.val ) {
+
+		if (prev != null && prev >= root.val) {
 			return false;
 		}
 		prev = root.val;
-		root = root.right;
 		return isValidBST_recursion(root);
 	}
-	
+
 }

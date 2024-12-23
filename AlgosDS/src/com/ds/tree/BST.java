@@ -3,6 +3,9 @@ package com.ds.tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import leetcode.model.TreeNode;
+import leetcode.tree.BST_deletion;
+
 public class BST {
 
 	private Node root;
@@ -57,6 +60,10 @@ public class BST {
 
 	}
 
+	/**
+	 * refer {@link BST_deletion} which has better implementation
+	 * 
+	 */
 	public Node deleteNode(Node node, int data) {
 
 		if (node == null)
@@ -125,6 +132,21 @@ public class BST {
 		bst.insert(62);
 		bst.insert(79);
 		bst.levelOrderTraversal();
+		System.out.println(bst.search(79));
+	}
+
+	public boolean search(int val) {
+
+		Node cur = this.root;
+		while (cur != null) {
+			if (cur.val == val)
+				return true;
+			else if (cur.val > val)
+				cur = cur.left;
+			else
+				cur = cur.right;
+		}
+		return false;
 	}
 
 }
