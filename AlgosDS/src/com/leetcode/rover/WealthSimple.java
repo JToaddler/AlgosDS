@@ -3,9 +3,14 @@ package com.leetcode.rover;
 /*
 
 //Phase 1:
-//We’re working on a robotic vacuum cleaner, a small machine designed to navigate around a house cleaning floors. We call our model EVA (Electronic Vacuum Assistant). We are tasked with writing the software to control it. It’s up to you to build a system to represent EVA that will evolve in complexity over time.
+//We’re working on a robotic vacuum cleaner, a small machine designed to navigate around a house cleaning floors. 
+ * We call our model EVA (Electronic Vacuum Assistant). We are tasked with writing the software to control it. 
+ * It’s up to you to build a system to represent EVA that will evolve in complexity over time.
 
-//A limited set of commands can be sent to EVA as single letters telling the robot how to move; “F” and “B” would tell EVA to move one position forwards or one position backwards. “L” and “R” would tell EVA to move one position left or one position right. Create a function to take a move command (F, B, L, R), process the move command appropriately, and report the new position.
+//A limited set of commands can be sent to EVA as single letters telling the robot how to move; 
+ * “F” and “B” would tell EVA to move one position forwards or one position backwards. 
+ * “L” and “R” would tell EVA to move one position left or one position right. 
+ * Create a function to take a move command (F, B, L, R), process the move command appropriately, and report the new position.
 
 //Sample interaction:
 //eva_move(‘B’) #=> (0, -1)
