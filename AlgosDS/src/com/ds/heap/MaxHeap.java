@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * 
  * 
- * @author Anto
+ * @author Anto 
  *
  */
 public class MaxHeap {
@@ -62,7 +62,7 @@ public class MaxHeap {
 		heap[index2] = temp;
 	}
 
-	public int pop() {
+	public int poll() {
 
 		int popped = heap[0];
 		heap[0] = heap[--size];
@@ -113,8 +113,8 @@ public class MaxHeap {
 		mHeap.add(2);
 		mHeap.add(12);
 		mHeap.print();
-		mHeap.pop();
-		mHeap.pop();
+		mHeap.poll();
+		mHeap.poll();
 
 	}
 

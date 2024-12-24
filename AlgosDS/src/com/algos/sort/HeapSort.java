@@ -38,7 +38,7 @@ public class HeapSort {
 		for (int i = n / 2 - 1; i >= 0; i--) {
 			maxHeapify(arr, n, i);
 		}
-		for (int i = arr.length - 1; i > 0; i--) {
+		for (int i = arr.length - 1; i >= 0; i--) {
 			int temp = arr[i];
 			arr[i] = arr[0];
 			arr[0] = temp;
