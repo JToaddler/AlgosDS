@@ -28,6 +28,7 @@ While many trees are balanced but not all. Two most common balanced trees are AV
 There are three types of traversal in general that can be applied to a binary tree, 
 i.e InOrder, PreOrder and PostOrder
  - _InOrder Traversal_ : Left > Current > Right i.e Visit the left sub tree first, then current node and then right sub tree.
+		</br> usage :<ol><li> validate if a given tree is BST. previous value is less than the current value</li></ol>
  - _PreOrder Traversal_ : Current > Left > Right i.e Visit the current node first then its child nodes (That's why it's called Pre-Order)
  - _PostOrder Traversal_ : Left > Right > Current i.e Visit the child nodes first and then current node (That's why it's called Post Order)
  
